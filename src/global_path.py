@@ -1,0 +1,5 @@
+PATH_ASSETS = "assets/"
+PATH_IMAGE = PATH_ASSETS + "image/"
+PATH_BACKGROUND = PATH_ASSETS + "background/"
+PATH_SOUND = PATH_ASSETS + "sound/"
+PATH_SPIRE = PATH_ASSETS + "sprite/"
