@@ -46,7 +46,7 @@ class MenuScreen(GameScreen):
         print("Key up handler")
 
     def on_mbutton_up(self, event):
-        print("Click chuot trai", event.pos)
+        print("Click chuot trai", event)
 
     def process_input(self):
         for event in pygame.event.get():
