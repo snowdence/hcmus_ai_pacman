@@ -1,16 +1,22 @@
 from screens import EventScreen
+from states import GameState
 
 
 class GameScreen(EventScreen):
-    def __init__(self):
-        super(EventScreen, self).__init__()
+    state: GameState = None
+
+    def __init__(self, state):
+        EventScreen.__init__(self)
+        self.state = state
+        print("init state", self.state.isRunning())
         print("Init game screen")
 
-    def init(self):
-        pass
+    def loop(self, window):
+        self.process_input()
+        self.update()
+        self.render(window)
 
-    def loop(self):
-        pass
+        self.clean()
 
     def process_input(self):
         pass
@@ -18,7 +24,7 @@ class GameScreen(EventScreen):
     def update(self):
         pass
 
-    def render(self, num):
+    def render(self, window):
         pass
 
     def clean(self):

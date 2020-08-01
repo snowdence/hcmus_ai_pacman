@@ -5,7 +5,7 @@ class Setting():
     # GAME GRAPHIC OPTIONS
     FPS = 60
     WIDTH = 1280
-    HEIGHT = 720
+    HEIGHT = 768
 
     # SAMPLE COLOR
     WHITE = (255, 255, 255)
