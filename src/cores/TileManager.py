@@ -122,6 +122,7 @@ class TileManager:
                 #player_y += 1
             if self.step == len(self.result):
                 self.coin_group.pop(0)
+        pygame.time.wait(200)
         self.player.render_tile(surface)
 
 
