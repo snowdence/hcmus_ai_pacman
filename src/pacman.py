@@ -17,7 +17,8 @@ class PacmanGame():
         pygame.display.set_caption(GAME_SETTING.TITLE)
         pygame.display.set_icon(pygame.image.load(GAME_ICON))
 
-        self.game_state = GameState(window=self.window, running=True, screen_state=EScreenState.Menu)
+        self.game_state = GameState(
+            window=self.window, running=True, screen_state=EScreenState.Playing)
         self.clock = pygame.time.Clock()
 
     def run(self):
@@ -26,7 +27,7 @@ class PacmanGame():
             self.game_state.getActiveScreen().loop(self.window)
 
             pygame.display.update()
-            
+
             self.clock.tick(60)
 
 

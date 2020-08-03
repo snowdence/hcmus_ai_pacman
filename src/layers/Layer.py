@@ -19,13 +19,15 @@ class Layer:
         if cell_size != None:
             self.cell_size = cell_size
         else:
-            self.cell_size = Vector2(GAME_SETTING.TILE_SIZE, GAME_SETTING.TILE_SIZE)
+            self.cell_size = Vector2(
+                GAME_SETTING.TILE_SIZE, GAME_SETTING.TILE_SIZE)
         if image_file != None:
-            self.texture = pygame.image.load(image_file)
-        else:
-            self.texture = pygame.Surface((self.tile_size.x, self.tile_size.y))
             self.layer_img = pygame.image.load(image_file)
-            self.layer_img_scaled = pygame.transform.scale(self.layer_img, (32, 32))
+            self.texture = pygame.transform.scale(
+                self.layer_img, (32, 32))
+        else:
+            self.texture = pygame.Surface((32, 32))
+            self.texture.fill(GAME_SETTING.GREEN)
 
     def set_position(self, x, y):
         self.position = Vector2(x, y)
@@ -44,11 +46,18 @@ class Layer:
 
         # spritePoint = self.position.elementwise() * self.cell_size
 
-        # texturePoint = tile.elementwise() * self.cell_size
-        textureRect = pygame.Rect(int(self.position.x), int(self.position.y), self.get_width, self.get_height)
+        #texturePoint = tile.elementwise() * self.cell_size
+        textureRect = pygame.Rect(0, 0, self.get_width, self.get_height)
 
         if angle is None:
-            surface.blit(self.texture, (self.position.x * 32, self.position.y * 32), textureRect)
+            surface.blit(self.texture, (self.position.x * 32,
+                                        self.position.y * 32), textureRect)
 
     def render(self, surface):
         raise NotImplementedError()
+
+    def check_collision(self, entity, dx=0, dy=0):
+        x, y = self.position.x + dx, self.position.y+dy
+        if x == entity.position.x and y == entity.position.y:
+            return True
+        return False
