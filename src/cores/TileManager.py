@@ -7,7 +7,7 @@ import pygame
 from setting import GAME_SETTING
 from cores.search.bfs import *
 
-
+from global_path import *
 class TileManager:
 
     ground_group:  List[Ground] = []
@@ -30,6 +30,10 @@ class TileManager:
         self.parse_map()
         self.solve_level1()
         self.step = 0
+        self.titleFont = pygame.font.Font(
+            PATH_ASSETS + "font/BD_Cartoon_Shout.ttf", 72)
+        self.itemFont = pygame.font.Font(
+            PATH_ASSETS + "font/BD_Cartoon_Shout.ttf", 48)
 
     def solve_level1(self):
         player_x, player_y = int(self.player.position.x), int(
@@ -90,6 +94,7 @@ class TileManager:
 
     def render(self, surface):
 
+
         for ground in self.ground_group:
             ground.render_tile(surface)
 
@@ -124,7 +129,8 @@ class TileManager:
                 self.coin_group.pop(0)
         pygame.time.wait(200)
         self.player.render_tile(surface)
-
+        text_point = self.titleFont.render(str(self.step) + " $" ,True, (200,0,0))
+        surface.blit(text_point, (0,0))
 
 if __name__ == "__main__":
     pass
