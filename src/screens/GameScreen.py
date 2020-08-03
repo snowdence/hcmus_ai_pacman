@@ -1,5 +1,6 @@
 from screens import EventScreen
 from states import GameState
+import pygame
 
 
 class GameScreen(EventScreen):
@@ -19,7 +20,8 @@ class GameScreen(EventScreen):
         self.clean()
 
     def process_input(self):
-        pass
+        for event in pygame.event.get():
+            self.on_event(event)
 
     def update(self):
         pass
