@@ -5,6 +5,7 @@ from pygame.math import Vector2
 from typing import List
 import pygame
 from setting import GAME_SETTING
+from cores.search.bfs import *
 
 
 class TileManager:
@@ -14,6 +15,7 @@ class TileManager:
     monster_group: List[Monster] = []
     coin_group = []
     wall_group = []
+    result_action_code = []
 
     def __init__(self):
         self.map_encode = []
@@ -25,6 +27,20 @@ class TileManager:
         self.player = None
         self.load_map()
         self.parse_map()
+        self.solve_level1()
+        self.step = 0
+
+    def solve_level1(self):
+        player_x, player_y = int(self.player.position.x), int(
+            self.player.position.y)
+
+        maze_problem = MazeProblem(
+            self.map_encode, MazeState(player_y, player_x), MazeState(24, 1))
+        bfs = BFS()
+
+        self.result, closed, cost = bfs.search(maze_problem, True)
+        self.result_action_code = [
+            rslt_item.actionCode for rslt_item in result]
 
     def load_map(self):
         game_folder = path.dirname(__file__)
@@ -80,6 +96,7 @@ class TileManager:
             coin.render_tile(surface)
 
         self.player.render_tile(surface)
+        self.step += 1
 
 
 if __name__ == "__main__":
