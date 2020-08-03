@@ -83,7 +83,6 @@ class EventScreen():
 
     def on_event(self, event):
         if event.type == QUIT:
-            print("Quit")
             self.on_exit()
 
         elif event.type >= USEREVENT:
