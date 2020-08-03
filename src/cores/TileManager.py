@@ -16,6 +16,7 @@ class TileManager:
     coin_group = []
     wall_group = []
     result_action_code = []
+    started = False
 
     def __init__(self):
         self.map_encode = []
@@ -33,14 +34,17 @@ class TileManager:
     def solve_level1(self):
         player_x, player_y = int(self.player.position.x), int(
             self.player.position.y)
-
+        coin_x, coin_y = int(self.coin_group[0].position.x), int(
+            self.coin_group[0].position.y)
         maze_problem = MazeProblem(
-            self.map_encode, MazeState(player_y, player_x), MazeState(24, 1))
+            self.map_encode, MazeState(player_x, player_y), MazeState(coin_x, coin_y))
         bfs = BFS()
 
-        self.result, closed, cost = bfs.search(maze_problem, True)
+        result, closed, cost = bfs.search(maze_problem, True)
+        self.result = result
         self.result_action_code = [
             rslt_item.actionCode for rslt_item in result]
+        print("Solved")
 
     def load_map(self):
         game_folder = path.dirname(__file__)
@@ -55,6 +59,9 @@ class TileManager:
                     row_p.append(tile)
             self.map_encode.append(row_p.copy())
         print("load ok")
+
+    def start(self):
+        self.started = True
 
     def parse_map(self):
         for (row, rv) in enumerate(self.map_encode, start=0):
@@ -95,8 +102,27 @@ class TileManager:
         for coin in self.coin_group:
             coin.render_tile(surface)
 
+        if(self.started == True and self.step < len(self.result)):
+            player_x, player_y = int(self.player.position.x), int(
+                self.player.position.y)
+            ac = self.result[self.step].actionCode
+            self.step += 1
+            if ac == 0:
+                self.move_player(dx=-1)
+                #player_x -= 1
+            elif ac == 1:
+                self.move_player(dy=-1)
+
+                #player_y -= 1
+            elif ac == 2:
+                self.move_player(dx=1)
+                #player_x += 1
+            elif ac == 3:
+                self.move_player(dy=1)
+                #player_y += 1
+            if self.step == len(self.result):
+                self.coin_group.pop(0)
         self.player.render_tile(surface)
-        self.step += 1
 
 
 if __name__ == "__main__":

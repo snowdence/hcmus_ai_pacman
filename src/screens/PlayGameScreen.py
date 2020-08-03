@@ -24,6 +24,9 @@ class PlayGameScreen(GameScreen):
             self.on_event(event)
 
     def on_key_down(self, event):
+
+        if event.key == pygame.K_p:
+            self.tile_manager.start()
         if event.key == pygame.K_LEFT:
             self.tile_manager.move_player(dx=-1)
         if event.key == pygame.K_RIGHT:
