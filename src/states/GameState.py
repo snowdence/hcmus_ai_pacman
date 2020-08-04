@@ -1,4 +1,3 @@
-import enum
 from screens import *
 from states import EScreenState
 
@@ -27,7 +26,7 @@ class GameState:
 
     def getActiveScreen(self):
         return self.active_screen
-    
+
     def isRunning(self):
         return self.running
 

@@ -1,6 +1,6 @@
 import os
 from os import path
-from layers import *
+from layers.entity import *
 from pygame.math import Vector2
 from typing import List
 import pygame
@@ -28,7 +28,7 @@ class TileManager:
         self.player = None
         self.load_map()
         self.parse_map()
-        self.solve_level1()
+        self.solve_level1_2()
 
         self.step = 0
         self.titleFont = pygame.font.Font(
@@ -36,7 +36,7 @@ class TileManager:
         self.itemFont = pygame.font.Font(
             PATH_ASSETS + "font/BD_Cartoon_Shout.ttf", 48)
 
-    def solve_level1(self):
+    def solve_level1_2(self):
         player_x, player_y = int(self.player.position.x), int(
             self.player.position.y)
         coin_x, coin_y = int(self.coin_group[0].position.x), int(
@@ -69,8 +69,8 @@ class TileManager:
         self.started = True
 
     def parse_map(self):
-        for (row, rv) in enumerate(self.map_encode, start=0):
-            for (col, rc) in enumerate(self.map_encode[row], start=0):
+        for row, rv in enumerate(self.map_encode, start=0):
+            for col, rc in enumerate(self.map_encode[row], start=0):
                 ev = self.map_encode[row][col]
                 self.ground_group.append(Ground(self, Vector2(col, row)))
                 # empty
