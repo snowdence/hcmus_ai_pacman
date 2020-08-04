@@ -1,7 +1,7 @@
 import pygame
 from setting import GAME_SETTING
 from pygame.math import Vector2
-from global_path import *
+from gpath import *
 
 
 class Layer:
@@ -46,7 +46,7 @@ class Layer:
 
         # spritePoint = self.position.elementwise() * self.cell_size
 
-        #texturePoint = tile.elementwise() * self.cell_size
+        # texturePoint = tile.elementwise() * self.cell_size
         textureRect = pygame.Rect(0, 0, self.get_width, self.get_height)
 
         if angle is None:
@@ -57,7 +57,7 @@ class Layer:
         raise NotImplementedError()
 
     def check_collision(self, entity, dx=0, dy=0):
-        x, y = self.position.x + dx, self.position.y+dy
+        x, y = self.position.x + dx, self.position.y + dy
         if x == entity.position.x and y == entity.position.y:
             return True
         return False

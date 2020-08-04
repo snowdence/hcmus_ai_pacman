@@ -1,7 +1,5 @@
-from search.bfs import *
-
+from .search.bfs import *
 from os import path
-import os
 
 
 class MazeGraph:
@@ -21,7 +19,7 @@ class MazeGraph:
     def load_map(self):
         game_folder = path.dirname(__file__)
         self.map_data = []
-        with open(path.join(game_folder,  self.map_file), 'rt') as f:
+        with open(path.join(game_folder, self.map_file), 'rt') as f:
             for line in f:
                 self.map_data.append(line)
 

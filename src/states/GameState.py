@@ -27,7 +27,7 @@ class GameState:
 
     def getActiveScreen(self):
         return self.active_screen
-
+    
     def isRunning(self):
         return self.running
 

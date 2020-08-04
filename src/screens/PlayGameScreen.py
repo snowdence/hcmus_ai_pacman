@@ -1,6 +1,6 @@
 from screens import GameScreen
 import pygame
-from global_path import *
+from gpath import *
 from os import path
 import pytweening as tween
 from layers import Wall

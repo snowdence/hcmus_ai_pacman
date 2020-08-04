@@ -3,7 +3,7 @@ from .Layer import Layer
 import math
 from pygame.math import Vector2
 
-from global_path import *
+from gpath import *
 
 
 class Player(Layer):
@@ -17,6 +17,6 @@ class Player(Layer):
 
     def wall_collision(self, wall_group, dx=0, dy=0):
         for wall in wall_group:
-            if(self.check_collision(wall, dx, dy)):
+            if (self.check_collision(wall, dx, dy)):
                 return True
         return False

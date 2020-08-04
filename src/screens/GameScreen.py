@@ -19,6 +19,9 @@ class GameScreen(EventScreen):
 
         self.clean()
 
+    def on_exit(self):
+        self.state.running = False
+
     def process_input(self):
         for event in pygame.event.get():
             self.on_event(event)

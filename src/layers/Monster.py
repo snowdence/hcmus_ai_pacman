@@ -3,7 +3,7 @@ from .Layer import Layer
 import math
 from pygame.math import Vector2
 
-from global_path import *
+from gpath import *
 
 
 class Monster(Layer):
