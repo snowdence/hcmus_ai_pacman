@@ -35,11 +35,7 @@ class MazeGraph:
 class SearchStrategy:
     def __init__(self):
         pass
-
-
-class MimaxAgent():
-    def getAction(self, state):
-        
+    
 
 if __name__ == "__main__":
     print("Search startegy module")

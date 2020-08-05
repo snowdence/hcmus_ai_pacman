@@ -20,13 +20,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e7f8c4b5-7d6d-4a57-9d5d-8d2288e8636e" name="Default Changelist" comment="Refractor object class">
-      <change afterPath="$PROJECT_DIR$/states/PlayGameScreenState.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/states/ScreenState.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cores/minimax/Actions.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cores/minimax/GameState.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cores/minimax/GameStateData.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cores/minimax/MazeState.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cores/minimax/MiniMaxAgent.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cores/minimax/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/src.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/src.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cores/search_strategy.py" beforeDir="false" afterPath="$PROJECT_DIR$/cores/search_strategy.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pacman.py" beforeDir="false" afterPath="$PROJECT_DIR$/pacman.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/screens/PlayGameScreen.py" beforeDir="false" afterPath="$PROJECT_DIR$/screens/PlayGameScreen.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/states/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/states/__init__.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,11 +60,11 @@
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\Project\hcmus_ai_pacman\src\layers\entity" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\snowdence\Desktop\git\hcmus_ai_pacman\src\map" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Project\hcmus_ai_pacman\src\layers\entity" />
     </key>
   </component>
   <component name="RunManager" selected="Python.search_strategy">
@@ -136,7 +139,7 @@
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -179,10 +182,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1596523771794" />
-    <state x="558" y="222" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1596551860288">
+    <state x="558" y="222" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1596642675435">
       <screen x="74" y="0" width="1462" height="864" />
     </state>
-    <state x="558" y="222" key="#com.intellij.fileTypes.FileTypeChooser/74.0.1462.864@74.0.1462.864" timestamp="1596551860288" />
+    <state x="558" y="222" key="#com.intellij.fileTypes.FileTypeChooser/74.0.1462.864@74.0.1462.864" timestamp="1596642675435" />
     <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1596550792323">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -248,10 +251,11 @@
     </state>
     <state x="342" y="54" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1596549887509" />
     <state x="508" y="301" key="SettingsEditor/2560.0.2048.1112/0.0.2048.1112@0.0.2048.1112" timestamp="1596614590921" />
-    <state x="2560" y="28" width="1479" height="761" key="dock-window-1" timestamp="1596602475022">
-      <screen x="2560" y="0" width="2048" height="1112" />
+    <state x="74" y="0" width="734" height="666" key="dock-window-1" timestamp="1596642140475">
+      <screen x="74" y="0" width="1462" height="864" />
     </state>
     <state x="2560" y="28" width="1479" height="761" key="dock-window-1/2560.0.2048.1112/0.0.2048.1112@0.0.2048.1112" timestamp="1596602475022" />
+    <state x="74" y="0" width="734" height="666" key="dock-window-1/74.0.1462.864@74.0.1462.864" timestamp="1596642140475" />
     <state x="2560" y="0" width="1484" height="696" maximized="true" key="dock-window-2" timestamp="1596568856417">
       <screen x="2560" y="0" width="2048" height="1112" />
     </state>
