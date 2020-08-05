@@ -20,27 +20,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e7f8c4b5-7d6d-4a57-9d5d-8d2288e8636e" name="Default Changelist" comment="Refractor object class">
-      <change afterPath="$PROJECT_DIR$/cores/map_test/map.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/layers/entity/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/src.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/src.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/states/PlayGameScreenState.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/states/ScreenState.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cores/TileManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/cores/TileManager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/layers/Coin.py" beforeDir="false" afterPath="$PROJECT_DIR$/layers/entity/Coin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/layers/Ground.py" beforeDir="false" afterPath="$PROJECT_DIR$/layers/entity/Ground.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/layers/Layer.py" beforeDir="false" afterPath="$PROJECT_DIR$/layers/entity/Layer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/layers/Monster.py" beforeDir="false" afterPath="$PROJECT_DIR$/layers/entity/Monster.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/layers/Player.py" beforeDir="false" afterPath="$PROJECT_DIR$/layers/entity/Player.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/layers/Wall.py" beforeDir="false" afterPath="$PROJECT_DIR$/layers/entity/Wall.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/layers/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/layers/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cores/search_strategy.py" beforeDir="false" afterPath="$PROJECT_DIR$/cores/search_strategy.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pacman.py" beforeDir="false" afterPath="$PROJECT_DIR$/pacman.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/screens/PlayGameScreen.py" beforeDir="false" afterPath="$PROJECT_DIR$/screens/PlayGameScreen.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/states/GameState.py" beforeDir="false" afterPath="$PROJECT_DIR$/states/GameState.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/states/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/states/__init__.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -66,7 +64,28 @@
       <recent name="C:\Users\snowdence\Desktop\git\hcmus_ai_pacman\src\map" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.search_strategy">
+    <configuration name="PlayGameScreenState" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="src" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/states" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/states/PlayGameScreenState.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="pacman" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="src" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -88,9 +107,32 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="search_strategy" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="src" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/cores" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/cores/search_strategy.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.search_strategy" />
         <item itemvalue="Python.pacman" />
+        <item itemvalue="Python.PlayGameScreenState" />
       </list>
     </recent_temporary>
   </component>
@@ -149,63 +191,67 @@
       <screen x="74" y="0" width="1462" height="864" />
     </state>
     <state x="549" y="267" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/74.0.1462.864@74.0.1462.864" timestamp="1596551710563" />
-    <state width="2012" height="368" key="GridCell.Tab.0.bottom" timestamp="1596569323260">
+    <state width="460" height="646" key="DebuggerActiveHint" timestamp="1596597846916">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state width="460" height="646" key="DebuggerActiveHint/2560.0.2048.1112/0.0.2048.1112@0.0.2048.1112" timestamp="1596597846916" />
+    <state width="2027" height="370" key="GridCell.Tab.0.bottom" timestamp="1596622823785">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
     <state width="1515" height="151" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1596551074584" />
-    <state width="2012" height="368" key="GridCell.Tab.0.bottom/2560.0.2048.1112/0.0.2048.1112@0.0.2048.1112" timestamp="1596569323260" />
+    <state width="2027" height="370" key="GridCell.Tab.0.bottom/2560.0.2048.1112/0.0.2048.1112@0.0.2048.1112" timestamp="1596622823785" />
     <state width="1441" height="151" key="GridCell.Tab.0.bottom/74.0.1462.864@74.0.1462.864" timestamp="1596556547025" />
-    <state width="2012" height="368" key="GridCell.Tab.0.center" timestamp="1596569323260">
+    <state width="2027" height="370" key="GridCell.Tab.0.center" timestamp="1596622823785">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
     <state width="1515" height="151" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1596551074584" />
-    <state width="2012" height="368" key="GridCell.Tab.0.center/2560.0.2048.1112/0.0.2048.1112@0.0.2048.1112" timestamp="1596569323260" />
+    <state width="2027" height="370" key="GridCell.Tab.0.center/2560.0.2048.1112/0.0.2048.1112@0.0.2048.1112" timestamp="1596622823785" />
     <state width="1441" height="151" key="GridCell.Tab.0.center/74.0.1462.864@74.0.1462.864" timestamp="1596556547025" />
-    <state width="2012" height="368" key="GridCell.Tab.0.left" timestamp="1596569323260">
+    <state width="2027" height="370" key="GridCell.Tab.0.left" timestamp="1596622823785">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
     <state width="1515" height="151" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1596551074584" />
-    <state width="2012" height="368" key="GridCell.Tab.0.left/2560.0.2048.1112/0.0.2048.1112@0.0.2048.1112" timestamp="1596569323260" />
+    <state width="2027" height="370" key="GridCell.Tab.0.left/2560.0.2048.1112/0.0.2048.1112@0.0.2048.1112" timestamp="1596622823785" />
     <state width="1441" height="151" key="GridCell.Tab.0.left/74.0.1462.864@74.0.1462.864" timestamp="1596556547025" />
-    <state width="2012" height="368" key="GridCell.Tab.0.right" timestamp="1596569323260">
+    <state width="2027" height="370" key="GridCell.Tab.0.right" timestamp="1596622823785">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
     <state width="1515" height="151" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1596551074584" />
-    <state width="2012" height="368" key="GridCell.Tab.0.right/2560.0.2048.1112/0.0.2048.1112@0.0.2048.1112" timestamp="1596569323260" />
+    <state width="2027" height="370" key="GridCell.Tab.0.right/2560.0.2048.1112/0.0.2048.1112@0.0.2048.1112" timestamp="1596622823785" />
     <state width="1441" height="151" key="GridCell.Tab.0.right/74.0.1462.864@74.0.1462.864" timestamp="1596556547025" />
-    <state width="2012" height="368" key="GridCell.Tab.1.bottom" timestamp="1596569323158">
+    <state width="2027" height="370" key="GridCell.Tab.1.bottom" timestamp="1596622823785">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
     <state width="1515" height="151" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1596551074517" />
-    <state width="2012" height="368" key="GridCell.Tab.1.bottom/2560.0.2048.1112/0.0.2048.1112@0.0.2048.1112" timestamp="1596569323158" />
+    <state width="2027" height="370" key="GridCell.Tab.1.bottom/2560.0.2048.1112/0.0.2048.1112@0.0.2048.1112" timestamp="1596622823785" />
     <state width="1441" height="151" key="GridCell.Tab.1.bottom/74.0.1462.864@74.0.1462.864" timestamp="1596556546955" />
-    <state width="2012" height="368" key="GridCell.Tab.1.center" timestamp="1596569323158">
+    <state width="2027" height="370" key="GridCell.Tab.1.center" timestamp="1596622823785">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
     <state width="1515" height="151" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1596551074517" />
-    <state width="2012" height="368" key="GridCell.Tab.1.center/2560.0.2048.1112/0.0.2048.1112@0.0.2048.1112" timestamp="1596569323158" />
+    <state width="2027" height="370" key="GridCell.Tab.1.center/2560.0.2048.1112/0.0.2048.1112@0.0.2048.1112" timestamp="1596622823785" />
     <state width="1441" height="151" key="GridCell.Tab.1.center/74.0.1462.864@74.0.1462.864" timestamp="1596556546955" />
-    <state width="2012" height="368" key="GridCell.Tab.1.left" timestamp="1596569323158">
+    <state width="2027" height="370" key="GridCell.Tab.1.left" timestamp="1596622823785">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
     <state width="1515" height="151" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1596551074517" />
-    <state width="2012" height="368" key="GridCell.Tab.1.left/2560.0.2048.1112/0.0.2048.1112@0.0.2048.1112" timestamp="1596569323158" />
+    <state width="2027" height="370" key="GridCell.Tab.1.left/2560.0.2048.1112/0.0.2048.1112@0.0.2048.1112" timestamp="1596622823785" />
     <state width="1441" height="151" key="GridCell.Tab.1.left/74.0.1462.864@74.0.1462.864" timestamp="1596556546955" />
-    <state width="2012" height="368" key="GridCell.Tab.1.right" timestamp="1596569323158">
+    <state width="2027" height="370" key="GridCell.Tab.1.right" timestamp="1596622823785">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
     <state width="1515" height="151" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1596551074517" />
-    <state width="2012" height="368" key="GridCell.Tab.1.right/2560.0.2048.1112/0.0.2048.1112@0.0.2048.1112" timestamp="1596569323158" />
+    <state width="2027" height="370" key="GridCell.Tab.1.right/2560.0.2048.1112/0.0.2048.1112@0.0.2048.1112" timestamp="1596622823785" />
     <state width="1441" height="151" key="GridCell.Tab.1.right/74.0.1462.864@74.0.1462.864" timestamp="1596556546955" />
-    <state x="533" y="201" key="SettingsEditor" timestamp="1596557123402">
+    <state x="508" y="301" key="SettingsEditor" timestamp="1596614590921">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
     <state x="342" y="54" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1596549887509" />
-    <state x="533" y="201" key="SettingsEditor/2560.0.2048.1112/0.0.2048.1112@0.0.2048.1112" timestamp="1596557123402" />
-    <state x="2560" y="0" width="1484" height="690" maximized="true" key="dock-window-1" timestamp="1596568654504">
+    <state x="508" y="301" key="SettingsEditor/2560.0.2048.1112/0.0.2048.1112@0.0.2048.1112" timestamp="1596614590921" />
+    <state x="2560" y="28" width="1479" height="761" key="dock-window-1" timestamp="1596602475022">
       <screen x="2560" y="0" width="2048" height="1112" />
     </state>
-    <state x="2560" y="0" width="1484" height="690" maximized="true" key="dock-window-1/2560.0.2048.1112/0.0.2048.1112@0.0.2048.1112" timestamp="1596568654504" />
+    <state x="2560" y="28" width="1479" height="761" key="dock-window-1/2560.0.2048.1112/0.0.2048.1112@0.0.2048.1112" timestamp="1596602475022" />
     <state x="2560" y="0" width="1484" height="696" maximized="true" key="dock-window-2" timestamp="1596568856417">
       <screen x="2560" y="0" width="2048" height="1112" />
     </state>
@@ -216,11 +262,11 @@
     <state x="480" y="0" width="576" height="824" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1596549936705" />
     <state x="640" y="0" width="770" height="1112" key="find.popup/2560.0.2048.1112/0.0.2048.1112@0.0.2048.1112" timestamp="1596568802873" />
     <state x="531" y="0" width="549" height="864" key="find.popup/74.0.1462.864@74.0.1462.864" timestamp="1596551770406" />
-    <state x="575" y="196" width="896" height="915" key="search.everywhere.popup" timestamp="1596566523156">
+    <state x="575" y="196" width="896" height="915" key="search.everywhere.popup" timestamp="1596602870366">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
     <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1596549868695" />
-    <state x="575" y="196" width="896" height="915" key="search.everywhere.popup/2560.0.2048.1112/0.0.2048.1112@0.0.2048.1112" timestamp="1596566523156" />
+    <state x="575" y="196" width="896" height="915" key="search.everywhere.popup/2560.0.2048.1112/0.0.2048.1112@0.0.2048.1112" timestamp="1596602870366" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
