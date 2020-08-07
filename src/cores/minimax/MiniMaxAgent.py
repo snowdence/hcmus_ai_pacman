@@ -42,3 +42,70 @@ class MiniMaxAgent:
         else:
             return min([self.max_value(game_state.generate_successor(agent_index, action), depth + 1) for action in
                         game_state.get_legal_actions(agent_index)])
+
+
+class AlphaBetaAgent:
+    """
+      Your minimax agent with alpha-beta pruning (question 3)
+    """
+    depth = 3
+
+    def __init__(self, depth=3):
+        self.depth = int(depth)
+
+    def get_action(self, game_state: GameState):
+        """
+          Returns the minimax action using self.depth and self.evaluationFunction
+        """
+
+        alpha = float('-inf')  # max best option on path to root
+        beta = float('inf')  # min best option on path to root
+
+        action_value = float('-inf')
+        max_action = None
+        for action in game_state.get_legal_actions(0):  # get action of pacman
+            action_value = self.Min_Value(
+                game_state.generate_successor(0, action), 1, 0, alpha, beta)
+            if (alpha < action_value):
+                alpha = action_value
+                max_action = action
+
+        return max_action
+
+    def Min_Value(self, game_state, agent_index, depth, alpha, beta):
+        """ For Min agents best move """
+
+        # No Legal actions.
+        if (len(game_state.get_legal_actions(agent_index)) == 0):
+            return score_evaluation_func(game_state)
+
+        action_value = float('inf')
+        for action in game_state.get_legal_actions(agent_index):
+            if (agent_index < game_state.get_num_agents() - 1):
+                action_value = min(action_value, self.Min_Value(game_state.generate_successor(
+                    agent_index, action), agent_index + 1, depth, alpha, beta))
+            else:  # the last ghost HERE
+                action_value = min(action_value, self.Max_Value(
+                    game_state.generate_successor(agent_index, action), depth + 1, alpha, beta))
+
+            if (action_value < alpha):
+                return action_value
+            beta = min(beta, action_value)
+        return action_value
+
+    def Max_Value(self, gameState, depth, alpha, beta):
+        """For Max agents best move"""
+
+        if (depth == self.depth or len(gameState.get_legal_actions(0)) == 0):
+            return score_evaluation_func(gameState)
+
+        action_value = float('-inf')
+        for action in gameState.get_legal_actions(0):
+            action_value = max(action_value, self.Min_Value(
+                gameState.generate_successor(0, action), 1, depth, alpha, beta))
+
+            if (action_value > beta):
+                return action_value
+            alpha = max(alpha, action_value)
+
+        return action_value

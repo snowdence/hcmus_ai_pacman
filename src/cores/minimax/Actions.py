@@ -71,8 +71,8 @@ class Actions:
     _directions = {Directions.DOWN: (0, 1),
                    Directions.UP: (0, -1),
                    Directions.RIGHT: (1, 0),
-                   Directions.LEFT: (-1, 0),
-                   Directions.STOP: (0, 0)}
+                   Directions.LEFT: (-1, 0)}
+    # Directions.STOP: (0, 0)}
 
     _directionsAsList = _directions.items()
 

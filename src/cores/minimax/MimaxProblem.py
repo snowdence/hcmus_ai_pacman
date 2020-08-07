@@ -1,7 +1,7 @@
 from GameState import GameState
 from GameStateData import GameStateData
 from rules import *
-from MiniMaxAgent import MiniMaxAgent
+from MiniMaxAgent import MiniMaxAgent, AlphaBetaAgent
 from layout import *
 from GhostAgents import GhostAgent
 
@@ -78,7 +78,7 @@ def run():
     minimax_problem = MinimaxProblem()
     num_ghost = 2
     layout = get_layout("map.txt")
-    pacman = MiniMaxAgent(2)
+    pacman = AlphaBetaAgent(2)
     ghosts = [GhostAgent(i + 1) for i in range(num_ghost)]
     minimax_problem.new_game(layout, pacman, ghosts)
 
