@@ -54,13 +54,13 @@ class Layout:
                                 for i, pos in self.agent_positions]
 
     def process_layout_char(self, x, y, layout_char):
-        if layout_char == '1':
+        if layout_char == '%':
             self.walls[x][y] = True
         elif layout_char == '.':
             self.foods[x][y] = True
         elif layout_char == 'P':
             self.agent_positions.append((0, (x, y)))
-        elif layout_char in ['3']:
+        elif layout_char in ['G']:
             self.agent_positions.append((1, (x, y)))
             self.num_ghosts += 1
 

@@ -92,6 +92,15 @@ class GameState:
             raise Exception("Invalid index passed to getGhostState")
         return self.data.agent_states[agent_index]
 
+    def get_ghost_states(self):
+        return self.data.agent_states[1:]
+
+    def get_pacman_position(self):
+        return self.data.agent_states[0].getPosition()
+
+    def get_ghost_position(self):
+        return [s.getPosition() for s in self.get_ghost_states()]
+
 
 class PacmanRules:
     PACMAN_SPEED = 1

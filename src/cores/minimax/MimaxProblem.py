@@ -3,7 +3,7 @@ from GameStateData import GameStateData
 from rules import *
 from MiniMaxAgent import MiniMaxAgent, AlphaBetaAgent
 from layout import *
-from GhostAgents import GhostAgent
+from GhostAgents import GhostAgent, DirectionalGhost
 
 
 class Game:
@@ -40,6 +40,9 @@ class Game:
                 self.num_moves += 1
                 print("Score :", self.state.data.score)
                 print("Food :", self.state.get_num_food())
+                print(self.state.get_pacman_position())
+                print(self.state.get_ghost_position())
+
             if agent_index == num_agents - 1:
                 agent_index = 0
             else:
@@ -76,10 +79,10 @@ class MinimaxProblem:
 
 def run():
     minimax_problem = MinimaxProblem()
-    num_ghost = 2
+    num_ghost = 4
     layout = get_layout("map.txt")
-    pacman = AlphaBetaAgent(2)
-    ghosts = [GhostAgent(i + 1) for i in range(num_ghost)]
+    pacman = AlphaBetaAgent(3)
+    ghosts = [DirectionalGhost(i + 1) for i in range(num_ghost)]
     minimax_problem.new_game(layout, pacman, ghosts)
 
     print("Running")
