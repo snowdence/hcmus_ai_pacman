@@ -35,7 +35,8 @@ class Configuration:
         return x == int(x) and y == int(y)
 
     def __eq__(self, other):
-        if other == None: return False
+        if other == None:
+            return False
         return (self.pos == other.pos and self.direction == other.direction)
 
     def __hash__(self):
@@ -98,13 +99,13 @@ class Actions:
     def getPossibleActions(config, walls):
         possible = []
         x, y = config.pos
-
+        wall_x, wall_y = walls.width, walls.height
         for dir, vec in Actions._directionsAsList:
             dx, dy = vec
-            next_y = y + dy
-            next_x = x + dx
-            if next_x >= 0 and next_y >= 0:
-                if not walls[next_y][next_x]:
+            next_y = int(y + dy)
+            next_x = int(x + dx)
+            if next_x >= 0 and next_y >= 0 and next_x < wall_x and next_y < wall_y:
+                if not walls[next_x][next_y]:
                     possible.append(dir)
 
         return possible
@@ -125,6 +126,6 @@ if __name__ == "__main__":
         [None, None, None, None, None],
         [None, None, None, None, None]
     ]
-    a = Configuration((0, 0), Directions.UP)
-    posible_action = Actions.getPossibleActions(a, wall_test)
-    print(posible_action)
+    a = Configuration((4, 1), Directions.RIGHT)
+    possible_action = Actions.getPossibleActions(a, wall_test)
+    print(possible_action)
