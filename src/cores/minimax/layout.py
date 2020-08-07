@@ -16,7 +16,7 @@ class Layout:
         self.process_layout_text(layout_arr)
 
         self.total_food = len(self.foods.asList())
-        print("Init layout")
+        #print("Init layout")
 
     def get_num_ghosts(self):
         return self.num_ghosts
@@ -50,7 +50,8 @@ class Layout:
                 layout_char = layout_arr[max_y - y][x]
                 self.process_layout_char(x, y, layout_char)
         self.agent_positions.sort()
-        self.agent_positions = [(i == 0, pos) for i, pos in self.agent_positions]
+        self.agent_positions = [(i == 0, pos)
+                                for i, pos in self.agent_positions]
 
     def process_layout_char(self, x, y, layout_char):
         if layout_char == '1':

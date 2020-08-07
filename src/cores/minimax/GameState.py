@@ -32,10 +32,11 @@ class GameState:
             GhostRules.apply_action(state, action, agent_index)
 
         if agent_index == 0:
-            self.data.score_change += -1
+            state.data.score_change += -1
 
         state.data.agentMoved = agent_index
         state.data.score += state.data.score_change
+
         GameState.explored.add(self)
         GameState.explored.add(state)
         return state
@@ -128,6 +129,8 @@ class PacmanRules:
             state.data.food_eaten = position
 
             num_food = state.get_num_food()
+            #print("Current food {0}".format(num_food))
+            #print("Current score {0}".format(state.data.score))
             if num_food == 0 and not state.data.lose:
                 state.data.score_change += 500
                 state.data.win = True

@@ -6,9 +6,9 @@ def score_evaluation_func(current_game_state: GameState):
 
 
 class MiniMaxAgent:
-    depth = 2
+    depth = 3
 
-    def __init__(self, depth=2):
+    def __init__(self, depth=3):
         self.depth = int(depth)
 
     def get_action(self, game_state: GameState):

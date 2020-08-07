@@ -38,11 +38,13 @@ class Game:
 
             if agent_index == num_agents - 1:
                 self.num_moves += 1
-
+                print("Score :", self.state.data.score)
+                print("Food :", self.state.get_num_food())
             if agent_index == num_agents - 1:
                 agent_index = 0
             else:
                 agent_index += 1
+
             # display update
         print("End ")
 
@@ -76,7 +78,7 @@ def run():
     minimax_problem = MinimaxProblem()
     num_ghost = 2
     layout = get_layout("map.txt")
-    pacman = MiniMaxAgent()
+    pacman = MiniMaxAgent(2)
     ghosts = [GhostAgent(i + 1) for i in range(num_ghost)]
     minimax_problem.new_game(layout, pacman, ghosts)
 
