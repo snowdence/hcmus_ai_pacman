@@ -1,6 +1,6 @@
 import pygame
 from setting import Setting
-from global_path import *
+from gpath import *
 from states import EScreenState, GameState
 
 GAME_SETTING = Setting()
