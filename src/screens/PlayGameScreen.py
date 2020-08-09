@@ -19,7 +19,7 @@ class PlayGameScreen(GameScreen):
 
         print("Created [play game screen]")
         self.tile_manager = TileManager()
-        
+
     def on_key_down(self, event):
         if event.key == pygame.K_p:
             self.tile_manager.start()

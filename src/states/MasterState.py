@@ -2,7 +2,7 @@ from screens import *
 from states import EScreenState
 
 
-class GameState:
+class MasterState:
     screen_state = EScreenState.Menu
     running = False
     window = None
@@ -19,7 +19,8 @@ class GameState:
     def setActiveScreen(self, es_state: EScreenState):
         switcher = {
             EScreenState.Menu: MenuScreen(self),
-            EScreenState.Playing: PlayGameScreen(self)
+            EScreenState.Playing: PlayGameScreen(self),
+            EScreenState.Minimax: MinimaxGameScreen(self)
         }
         self.screen_state = es_state
         self.active_screen = switcher.get(es_state, None)

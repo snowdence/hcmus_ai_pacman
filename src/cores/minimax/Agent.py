@@ -1,5 +1,5 @@
-from GameState import GameState
-from GameStateData import GameStateData
+from .GameState import GameState
+from .GameStateData import GameStateData
 
 
 class Agent:

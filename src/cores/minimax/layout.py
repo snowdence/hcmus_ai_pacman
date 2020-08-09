@@ -1,4 +1,4 @@
-from Grid import Grid
+from .Grid import Grid
 import os
 import random
 
@@ -47,20 +47,20 @@ class Layout:
         max_y = self.height - 1
         for y in range(self.height):
             for x in range(self.width):
-                layout_char = layout_arr[max_y - y][x]
+                layout_char = layout_arr[y][x]
                 self.process_layout_char(x, y, layout_char)
         self.agent_positions.sort()
         self.agent_positions = [(i == 0, pos)
                                 for i, pos in self.agent_positions]
 
     def process_layout_char(self, x, y, layout_char):
-        if layout_char == '%':
+        if layout_char == '1':
             self.walls[x][y] = True
         elif layout_char == '.':
             self.foods[x][y] = True
         elif layout_char == 'P':
             self.agent_positions.append((0, (x, y)))
-        elif layout_char in ['G']:
+        elif layout_char in ['3']:
             self.agent_positions.append((1, (x, y)))
             self.num_ghosts += 1
 

@@ -1,7 +1,7 @@
-from Agent import Agent
-from Actions import *
-from util import *
-from GameState import GameState
+from .Agent import Agent
+from .Actions import *
+from .util import *
+from .GameState import GameState
 
 
 class GhostAgent(Agent):
@@ -19,7 +19,7 @@ class GhostAgent(Agent):
     def get_distribution(self, state: GameState):
         dist = Counter()
         for a in state.get_legal_actions(self.index):
-            dist[a] = 1.0
+            dist[a] = 1
         dist.normalize()
         return dist
 

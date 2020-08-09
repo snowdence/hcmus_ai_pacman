@@ -1,6 +1,6 @@
-from GameStateData import GameStateData
-from rules import *
-from Actions import *
+from .GameStateData import GameStateData
+from .rules import *
+from .Actions import *
 
 
 class GameState:
@@ -46,6 +46,14 @@ class GameState:
             self.data = GameStateData(prev_state.data)
         else:
             self.data = GameStateData()
+
+    def collide_ghosts(self, x, y):
+        list_ghost = [s.getPosition() for s in self.get_ghost_states()]
+        for item in list_ghost:
+            ix, iy = item
+            if int(ix) == x and int(iy) == y:
+                return True
+        return False
 
     def get_num_agents(self):
         num = len(self.data.agent_states)
@@ -138,12 +146,13 @@ class PacmanRules:
             state.data.food_eaten = position
 
             num_food = state.get_num_food()
-            #print("Current food {0}".format(num_food))
-            #print("Current score {0}".format(state.data.score))
+            # print("Current food {0}".format(num_food))
+            # print("Current score {0}".format(state.data.score))
             if num_food == 0 and not state.data.lose:
                 state.data.score_change += 500
                 state.data.win = True
-
+        if state.collide_ghosts(x, y) == True:
+            state.data.score_change -= 1000
     consume = staticmethod(consume)
 
 
@@ -167,7 +176,7 @@ class GhostRules:
             raise Exception("Illegal ghost action" + str(action))
 
         ghost_state = state.data.agent_states[ghost_index]
-        vector = Actions.directionToVector(action, 1.0)
+        vector = Actions.directionToVector(action, 1)
         ghost_state.configuration = ghost_state.configuration.generateSuccessor(
             vector)
 

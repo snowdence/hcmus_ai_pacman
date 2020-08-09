@@ -1,4 +1,4 @@
-from Actions import *
+from .Actions import *
 
 
 class AgentState:
@@ -37,7 +37,8 @@ class AgentState:
         return state
 
     def getPosition(self):
-        if self.configuration == None: return None
+        if self.configuration == None:
+            return None
         return self.configuration.getPosition()
 
     def getDirection(self):
@@ -45,7 +46,7 @@ class AgentState:
 
 
 class GameStateData:
-    
+
     def __init__(self, prev_state=None):
         if prev_state != None:
             self.foods = prev_state.foods.shallow_copy()
@@ -91,5 +92,6 @@ class GameStateData:
                     continue  # Max ghosts reached already
                 else:
                     num_ghost += 1
-            self.agent_states.append(AgentState(Configuration(pos, Directions.STOP), isPacman))
+            self.agent_states.append(AgentState(
+                Configuration(pos, Directions.STOP), isPacman))
         self._eaten = [False for a in self.agent_states]
