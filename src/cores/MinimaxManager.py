@@ -33,10 +33,10 @@ class MinimaxManager:
     def __init__(self, game):
         self.map_encode = []
         # list layer
-        w, h = 10, 10
+        #w, h = 10, 10
         # Matrix = [[0 for x in range(w)] for y in range(h)]
-        self.map_tile: List[List[Layer]] = [
-            [0 for x in range(w)] for y in range(h)]
+        # self.map_tile: List[List[Layer]] = [
+        #    [0 for x in range(w)] for y in range(h)]
         self.player = None
         self.load_map('mini.txt')
         self.parse_map()
