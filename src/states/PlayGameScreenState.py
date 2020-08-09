@@ -16,8 +16,10 @@ class PlayGameScreenState:
     map_encode = []  # 0 1 2 3 P map
 
     def __init__(self):
-        self.ground_layer = [[None] * (GAME_SETTING.WIDTH // 32)] * (GAME_SETTING.HEIGHT // 32)
-        self.wall_layer = [[None] * (GAME_SETTING.WIDTH // 32)] * (GAME_SETTING.HEIGHT // 32)
+        self.ground_layer = [
+            [None] * (GAME_SETTING.WIDTH // 32)] * (GAME_SETTING.HEIGHT // 32)
+        self.wall_layer = [
+            [None] * (GAME_SETTING.WIDTH // 32)] * (GAME_SETTING.HEIGHT // 32)
 
         self.entities = {
             'ground': self.ground_layer,
@@ -46,13 +48,6 @@ class PlayGameScreenState:
                 entity.render_tile(window)
 
         self.players.render_tile(window)
-
-    def action_solve(self, level=1, map_name='map_lv1.txt', algorithm='bfs'):
-        pass
-
-    def minimax_solve(self):
-
-        pass
 
 
 if __name__ == '__main__':

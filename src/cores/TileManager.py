@@ -24,7 +24,8 @@ class TileManager:
         # list layer
         w, h = 40, 24
         # Matrix = [[0 for x in range(w)] for y in range(h)]
-        self.map_tile: List[List[Layer]] = [[0 for x in range(w)] for y in range(h)]
+        self.map_tile: List[List[Layer]] = [
+            [0 for x in range(w)] for y in range(h)]
         self.player = None
         self.load_map()
         self.parse_map()
@@ -125,9 +126,10 @@ class TileManager:
                 # player_y += 1
             if self.step == len(self.result):
                 self.coin_group.pop(0)
-        pygame.time.wait(100)
+
         self.player.render_tile(surface)
-        text_point = self.titleFont.render(str(self.step) + " $", True, (100, 0, 0))
+        text_point = self.titleFont.render(
+            str(self.step) + " $", True, (100, 0, 0))
         surface.blit(text_point, (0, 0))
 
 

@@ -1,10 +1,10 @@
 from screens import EventScreen
-from states import GameState
+from states import MasterState
 import pygame
 
 
 class GameScreen(EventScreen):
-    state: GameState = None
+    state: MasterState = None
 
     def __init__(self, state):
         EventScreen.__init__(self)

@@ -32,6 +32,9 @@ class Layer:
     def set_position(self, x, y):
         self.position = Vector2(x, y)
 
+    def get_position(self):
+        return (self.position.x, self.position.y)
+
     @property
     def get_width(self):
         return int(self.cell_size.x)

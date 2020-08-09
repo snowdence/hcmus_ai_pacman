@@ -1,9 +1,19 @@
-from GameState import GameState
-from GameStateData import GameStateData
-from rules import *
-from MiniMaxAgent import MiniMaxAgent, AlphaBetaAgent
-from layout import *
-from GhostAgents import GhostAgent, DirectionalGhost
+from screens import GameScreen
+import pygame
+from gpath import *
+from os import path
+import pytweening as tween
+from layers.entity import Wall
+from pygame.math import Vector2
+from cores import TileManager, MinimaxManager
+from states import *
+
+from cores.minimax.GameState import GameState
+from cores.minimax.GameStateData import GameStateData
+from cores.minimax.rules import *
+from cores.minimax.MiniMaxAgent import MiniMaxAgent, AlphaBetaAgent
+from cores.minimax.layout import *
+from cores.minimax.GhostAgents import GhostAgent, DirectionalGhost
 
 
 class Game:
@@ -32,7 +42,7 @@ class Game:
             self.move_history.append((agent_index, action))
             self.state = self.state.generate_successor(agent_index, action)
             self.rules.process(self.state, self)
-
+            print("Agent {0} action: {1}".format(agent_index, action))
             print("Epoch agent {0}, Num moves{1}".format(
                 agent_index, self.num_moves))
 
@@ -52,12 +62,19 @@ class Game:
         print("End ")
 
 
-class MinimaxProblem:
+class MinimaxGameScreen(GameScreen):
     game_over = False
     init_state: GameState = None
 
-    def __init__(self):
-        pass
+    def __init__(self, state):
+        GameScreen.__init__(self, state=state)
+        self.titleFont = pygame.font.Font(
+            PATH_ASSETS + "font/BD_Cartoon_Shout.ttf", 72)
+        self.itemFont = pygame.font.Font(
+            PATH_ASSETS + "font/BD_Cartoon_Shout.ttf", 48)
+
+        print("Created [minimax game screen]")
+        self.run()
 
     def new_game(self, layout, pacman_agent, ghost_agents):
         agents = [pacman_agent] + ghost_agents[:layout.get_num_ghosts()]
@@ -67,7 +84,6 @@ class MinimaxProblem:
         game = Game(agents, self, 0)
         game.state = init_state
         self.init_state = init_state.deepcopy()
-        game.run()
         return game
 
     def process(self, state: GameState, game):
@@ -76,16 +92,35 @@ class MinimaxProblem:
         if state.is_lose():
             game.game_over = True
 
+    def run(self):
+        num_ghost = 2
+        layout = get_layout("maps/mini.txt")
+        pacman = MiniMaxAgent(3)
+        ghosts = [DirectionalGhost(i + 1) for i in range(num_ghost)]
+        game = self.new_game(layout, pacman, ghosts)
+        self.tile_manager = MinimaxManager(game)
 
-def run():
-    minimax_problem = MinimaxProblem()
-    num_ghost = 4
-    layout = get_layout("map.txt")
-    pacman = AlphaBetaAgent(3)
-    ghosts = [GhostAgent(i + 1) for i in range(num_ghost)]
-    minimax_problem.new_game(layout, pacman, ghosts)
+        print("Running")
 
-    print("Running")
+    def on_key_down(self, event):
+        if event.key == pygame.K_p:
+            print("Play press!!!!")
+            self.tile_manager.run()
+        if event.key == pygame.K_LEFT:
+            self.tile_manager.move_player(dx=-1)
+        if event.key == pygame.K_RIGHT:
+            self.tile_manager.move_player(dx=1)
+        if event.key == pygame.K_UP:
+            self.tile_manager.move_player(dy=-1)
+        if event.key == pygame.K_DOWN:
+            self.tile_manager.move_player(dy=1)
 
+    def update(self):
+        self.tile_manager.update()
 
-run()
+    def render(self, window):
+        window.fill((0, 0, 0))
+        self.tile_manager.render(window)
+
+    def clear(self):
+        pass

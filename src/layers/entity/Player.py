@@ -20,3 +20,8 @@ class Player(Layer):
             if (self.check_collision(wall, dx, dy)):
                 return True
         return False
+
+    def eat_coin(self, coin_group):
+        for coin in coin_group:
+            if(self.check_collision(coin, 0, 0)):
+                coin.hide()

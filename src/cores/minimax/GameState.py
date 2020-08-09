@@ -1,6 +1,6 @@
-from GameStateData import GameStateData
-from rules import *
-from Actions import *
+from .GameStateData import GameStateData
+from .rules import *
+from .Actions import *
 
 
 class GameState:
@@ -167,7 +167,7 @@ class GhostRules:
             raise Exception("Illegal ghost action" + str(action))
 
         ghost_state = state.data.agent_states[ghost_index]
-        vector = Actions.directionToVector(action, 1.0)
+        vector = Actions.directionToVector(action, 1)
         ghost_state.configuration = ghost_state.configuration.generateSuccessor(
             vector)
 
