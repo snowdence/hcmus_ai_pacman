@@ -28,39 +28,6 @@ class Game:
         self.total_agent_times = [0 for agent in agents]
         self.num_moves = 0
 
-    def run(self):
-        self.num_moves = 0
-        agent_index = self.start_index
-        num_agents = len(self.agents)
-        while not self.game_over:
-
-            agent = self.agents[agent_index]
-
-            action = None
-            observation = self.state.deepcopy()
-            action = agent.get_action(observation)
-            self.move_history.append((agent_index, action))
-            self.state = self.state.generate_successor(agent_index, action)
-            self.rules.process(self.state, self)
-            print("Agent {0} action: {1}".format(agent_index, action))
-            print("Epoch agent {0}, Num moves{1}".format(
-                agent_index, self.num_moves))
-
-            if agent_index == num_agents - 1:
-                self.num_moves += 1
-                print("Score :", self.state.data.score)
-                print("Food :", self.state.get_num_food())
-                print(self.state.get_pacman_position())
-                print(self.state.get_ghost_position())
-
-            if agent_index == num_agents - 1:
-                agent_index = 0
-            else:
-                agent_index += 1
-
-            # display update
-        print("End ")
-
 
 class MinimaxGameScreen(GameScreen):
     game_over = False
@@ -95,8 +62,8 @@ class MinimaxGameScreen(GameScreen):
     def run(self):
         num_ghost = 2
         layout = get_layout("maps/mini.txt")
-        pacman = MiniMaxAgent(3)
-        ghosts = [DirectionalGhost(i + 1) for i in range(num_ghost)]
+        pacman = MiniMaxAgent(2)
+        ghosts = [GhostAgent(i + 1) for i in range(num_ghost)]
         game = self.new_game(layout, pacman, ghosts)
         self.tile_manager = MinimaxManager(game)
 

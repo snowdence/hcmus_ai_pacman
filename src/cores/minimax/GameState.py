@@ -47,6 +47,10 @@ class GameState:
         else:
             self.data = GameStateData()
 
+    def collide_ghosts_pos(self, pos):
+        x, y = pos
+        return self.collide_ghosts(x, y)
+
     def collide_ghosts(self, x, y):
         list_ghost = [s.getPosition() for s in self.get_ghost_states()]
         for item in list_ghost:
@@ -163,9 +167,13 @@ class GhostRules:
         conf = state.get_ghost_state(ghost_index).configuration
         able_actions = Actions.getPossibleActions(
             conf, state.data.layout.walls)
+        reverse = Actions.reverse_direction(conf.direction)
+
         if Directions.STOP in able_actions:
             able_actions.remove(Directions.STOP)  # not allow ghost stop
         #  process rotate 180 (not allow)
+        if reverse in able_actions and len(able_actions) > 1:
+            able_actions.remove(reverse)
         return able_actions
 
     get_legal_action = staticmethod(get_legal_action)

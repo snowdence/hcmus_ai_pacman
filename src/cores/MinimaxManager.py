@@ -153,6 +153,9 @@ class MinimaxManager:
                 print("Food :", game.state.get_num_food())
                 print(game.state.get_pacman_position())
                 print(game.state.get_ghost_position())
+                if game.state.collide_ghosts_pos(game.state.get_pacman_position()) == True:
+                    game.game_over = True
+                    print("Chet roi!!!!")
             if game.game_over:
                 print("End")
                 return
@@ -177,6 +180,7 @@ class MinimaxManager:
             ady = abs(my - y)
             if (adx == 1 and ady == 0) or (adx == 0 and ady == 1):
                 monster.set_position(x, y)
+                return
 
     def render(self, surface):
 
@@ -198,7 +202,7 @@ class MinimaxManager:
         text_point = self.titleFont.render(
             str(self.step) + " $", True, (100, 0, 0))
         surface.blit(text_point, (0, 0))
-        pygame.time.wait(10)
+        # pygame.time.wait(10)
 
 
 if __name__ == "__main__":

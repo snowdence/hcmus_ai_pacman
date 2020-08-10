@@ -119,6 +119,18 @@ class Actions:
 
     getSuccessor = staticmethod(getSuccessor)
 
+    def reverse_direction(action):
+        if action == Directions.UP:
+            return Directions.DOWN
+        if action == Directions.DOWN:
+            return Directions.UP
+        if action == Directions.RIGHT:
+            return Directions.LEFT
+        if action == Directions.LEFT:
+            return Directions.RIGHT
+        return action
+    reverse_direction = staticmethod(reverse_direction)
+
 
 if __name__ == "__main__":
     wall_test = [

@@ -100,13 +100,36 @@ class AlphaBetaAgent:
 
         action_value = float('-inf')
         max_action = None
+        debug_value = []
+        random_max = []
         for action in game_state.get_legal_actions(0):  # get action of pacman
             action_value = self.Min_Value(
                 game_state.generate_successor(0, action), 1, 0, alpha, beta)
             if (alpha < action_value):
                 alpha = action_value
                 max_action = action
+                random_max.clear()
+                random_max.append(
 
+                    (str(action),  action_value)
+
+                )
+            elif alpha == action_value:
+                random_max.append(
+
+                    (str(action),  action_value)
+
+                )
+
+            debug_value.append(
+                {
+                    (str(action),  action_value)
+                }
+            )
+
+        if len(random_max) > 0:
+            (kc, kv) = random.choice(random_max)
+            return kc
         return max_action
 
     def Min_Value(self, game_state, agent_index, depth, alpha, beta):
