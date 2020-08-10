@@ -1,11 +1,12 @@
 from screens import GameScreen
 import pygame
-from global_path import *
+from gpath import *
 from os import path
 import pytweening as tween
-from layers import Wall
+from layers.entity import Wall
 from pygame.math import Vector2
 from cores import TileManager
+from states import *
 
 
 class PlayGameScreen(GameScreen):
@@ -19,12 +20,7 @@ class PlayGameScreen(GameScreen):
         print("Created [play game screen]")
         self.tile_manager = TileManager()
 
-    def process_input(self):
-        for event in pygame.event.get():
-            self.on_event(event)
-
     def on_key_down(self, event):
-
         if event.key == pygame.K_p:
             self.tile_manager.start()
         if event.key == pygame.K_LEFT:

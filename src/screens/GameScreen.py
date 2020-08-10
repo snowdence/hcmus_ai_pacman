@@ -1,10 +1,10 @@
 from screens import EventScreen
-from states import GameState
+from states import MasterState
 import pygame
 
 
 class GameScreen(EventScreen):
-    state: GameState = None
+    state: MasterState = None
 
     def __init__(self, state):
         EventScreen.__init__(self)
@@ -18,6 +18,9 @@ class GameScreen(EventScreen):
         self.render(window)
 
         self.clean()
+
+    def on_exit(self):
+        self.state.running = False
 
     def process_input(self):
         for event in pygame.event.get():

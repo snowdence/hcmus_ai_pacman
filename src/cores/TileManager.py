@@ -1,17 +1,18 @@
 import os
 from os import path
-from layers import *
+from layers.entity import *
 from pygame.math import Vector2
 from typing import List
 import pygame
 from setting import GAME_SETTING
 from cores.search.bfs import *
 
+from gpath import *
+
 
 class TileManager:
-
-    ground_group:  List[Ground] = []
-    player: List[Player] = None
+    ground_group: List[Ground] = []
+    player: Player = None
     monster_group: List[Monster] = []
     coin_group = []
     wall_group = []
@@ -28,10 +29,15 @@ class TileManager:
         self.player = None
         self.load_map()
         self.parse_map()
-        self.solve_level1()
-        self.step = 0
+        self.solve_level1_2()
 
-    def solve_level1(self):
+        self.step = 0
+        self.titleFont = pygame.font.Font(
+            PATH_ASSETS + "font/BD_Cartoon_Shout.ttf", 72)
+        self.itemFont = pygame.font.Font(
+            PATH_ASSETS + "font/BD_Cartoon_Shout.ttf", 48)
+
+    def solve_level1_2(self):
         player_x, player_y = int(self.player.position.x), int(
             self.player.position.y)
         coin_x, coin_y = int(self.coin_group[0].position.x), int(
@@ -46,10 +52,10 @@ class TileManager:
             rslt_item.actionCode for rslt_item in result]
         print("Solved")
 
-    def load_map(self):
+    def load_map(self, file_map='map_lv1.txt'):
         game_folder = path.dirname(__file__)
         self.map_data = []
-        with open(path.join(game_folder, 'map.txt'), 'rt') as f:
+        with open(path.join(game_folder, PATH_MAP + file_map), 'rt') as f:
             for line in f:
                 self.map_data.append(line)
         for row, tiles in enumerate(self.map_data, start=0):
@@ -58,14 +64,14 @@ class TileManager:
                 if tile in ['.', '1', '2', '3', 'P']:
                     row_p.append(tile)
             self.map_encode.append(row_p.copy())
-        print("load ok")
+        print("load map {} successfully!!!".format(file_map))
 
     def start(self):
         self.started = True
 
     def parse_map(self):
-        for (row, rv) in enumerate(self.map_encode, start=0):
-            for (col, rc) in enumerate(self.map_encode[row], start=0):
+        for row, rv in enumerate(self.map_encode, start=0):
+            for col, rc in enumerate(self.map_encode[row], start=0):
                 ev = self.map_encode[row][col]
                 self.ground_group.append(Ground(self, Vector2(col, row)))
                 # empty
@@ -84,12 +90,11 @@ class TileManager:
         print("Parsed")
 
     def move_player(self, dx=0, dy=0):
-        if(self.player.wall_collision(self.wall_group, dx, dy) is not True):
+        if (self.player.wall_collision(self.wall_group, dx, dy) is not True):
             self.player.set_position(
                 self.player.position.x + dx, self.player.position.y + dy)
 
     def render(self, surface):
-
         for ground in self.ground_group:
             ground.render_tile(surface)
 
@@ -102,27 +107,30 @@ class TileManager:
         for coin in self.coin_group:
             coin.render_tile(surface)
 
-        if(self.started == True and self.step < len(self.result)):
+        if (self.started == True and self.step < len(self.result)):
             player_x, player_y = int(self.player.position.x), int(
                 self.player.position.y)
             ac = self.result[self.step].actionCode
             self.step += 1
             if ac == 0:
                 self.move_player(dx=-1)
-                #player_x -= 1
+                # player_x -= 1
             elif ac == 1:
                 self.move_player(dy=-1)
-
-                #player_y -= 1
+                # player_y -= 1
             elif ac == 2:
                 self.move_player(dx=1)
-                #player_x += 1
+                # player_x += 1
             elif ac == 3:
                 self.move_player(dy=1)
-                #player_y += 1
+                # player_y += 1
             if self.step == len(self.result):
                 self.coin_group.pop(0)
+
         self.player.render_tile(surface)
+        text_point = self.titleFont.render(
+            str(self.step) + " $", True, (100, 0, 0))
+        surface.blit(text_point, (0, 0))
 
 
 if __name__ == "__main__":

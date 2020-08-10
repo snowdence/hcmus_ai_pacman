@@ -1,14 +1,14 @@
 import pygame
 from setting import Setting
-from global_path import *
-from states import EScreenState, GameState
+from gpath import *
+from states import EScreenState, MasterState
 
 GAME_SETTING = Setting()
 os.environ['SDL_VIDEO_CENTERED'] = '1'
 
 
 class PacmanGame():
-    game_state = None
+    master_state = None
 
     def __init__(self):
         pygame.init()
@@ -17,14 +17,14 @@ class PacmanGame():
         pygame.display.set_caption(GAME_SETTING.TITLE)
         pygame.display.set_icon(pygame.image.load(GAME_ICON))
 
-        self.game_state = GameState(
-            window=self.window, running=True, screen_state=EScreenState.Playing)
+        self.master_state = MasterState(
+            window=self.window, running=True, screen_state=EScreenState.Minimax)
         self.clock = pygame.time.Clock()
 
     def run(self):
-        while self.game_state.isRunning():
+        while self.master_state.isRunning():
             # blit screen on window surface
-            self.game_state.getActiveScreen().loop(self.window)
+            self.master_state.getActiveScreen().loop(self.window)
 
             pygame.display.update()
 
