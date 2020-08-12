@@ -1,3 +1,5 @@
+# Setting value
+
 class Setting:
     # GAME INFORMATION
     TITLE = "Pacman Project 2"
