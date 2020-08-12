@@ -1,4 +1,3 @@
-# Main program
 import pygame
 from setting import Setting
 from gpath import *
@@ -9,7 +8,7 @@ os.environ['SDL_VIDEO_CENTERED'] = '1'
 
 
 class PacmanGame():
-    master_state = None  # keep state of game
+    master_state = None
 
     def __init__(self):
         pygame.init()
@@ -19,15 +18,13 @@ class PacmanGame():
         pygame.display.set_icon(pygame.image.load(GAME_ICON))
 
         self.master_state = MasterState(
-            window=self.window, running=True, screen_state=EScreenState.Minimax)  # default set to minimax game screen
+            window=self.window, running=True, screen_state=EScreenState.Minimax)
         self.clock = pygame.time.Clock()
 
     def run(self):
-        """Main run of pame
-        """
         while self.master_state.isRunning():
             # blit screen on window surface
-            self.master_state.getActiveScreen().loop(self.window)  # loop
+            self.master_state.getActiveScreen().loop(self.window)
 
             pygame.display.update()
 
