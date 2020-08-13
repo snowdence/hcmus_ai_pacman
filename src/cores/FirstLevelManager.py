@@ -19,6 +19,7 @@ class FirstLevelManager:
     result_action_code = []
     started = False
     finished = False
+    score = False
 
     def __init__(self):
         self.map_encode = []
@@ -34,9 +35,9 @@ class FirstLevelManager:
 
         self.step = 0
         self.titleFont = pygame.font.Font(
-            PATH_ASSETS + "font/BD_Cartoon_Shout.ttf", 72)
+            PATH_ASSETS + "font/BD_Cartoon_Shout.ttf", 79)
         self.itemFont = pygame.font.Font(
-            PATH_ASSETS + "font/BD_Cartoon_Shout.ttf", 48)
+            PATH_ASSETS + "font/BD_Cartoon_Shout.ttf", 47)
 
     def solve_level1_2(self):
         player_x, player_y = int(self.player.position.x), int(
@@ -129,16 +130,27 @@ class FirstLevelManager:
                 self.finished = True
 
                 self.coin_group.pop(0)
-        if self.finished == True:
-            game_over = self.titleFont.render(
-                "GAME OVER", True, (100, 0, 0))
-            surface.blit(game_over, (100, 100))
 
         self.player.render_tile(surface)
-        pygame.time.wait(100)
-        text_point = self.titleFont.render(
-            str(self.step) + " $", True, (100, 0, 0))
-        surface.blit(text_point, (0, 0))
+        pygame.time.wait(200)
+
+        if self.finished == True:
+            pygame.display.set_mode((GAME_SETTING.M_WIDTH, GAME_SETTING.M_HEIGHT))
+            pygame.display.set_caption(GAME_SETTING.TITLE)
+            pygame.display.set_icon(pygame.image.load(GAME_ICON))
+
+            game_over = self.titleFont.render(
+                "GAME OVER", True, (100, 0, 0))
+            surface.blit(game_over, (70, 170))
+
+            score = self.itemFont.render("Score: " + str(self.step), True, (100, 0, 0))
+            surface.blit(score, (200, 275))
+
+        #self.player.render_tile(surface)
+        #pygame.time.wait(100)
+        # text_point = self.titleFont.render(
+        #     str(self.step) + " $", True, (100, 0, 0))
+        # surface.blit(text_point, (0, 0))
 
 
 if __name__ == "__main__":
