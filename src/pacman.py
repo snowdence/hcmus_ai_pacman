@@ -1,4 +1,3 @@
-# Main program
 import pygame
 from setting import Setting
 from gpath import *
@@ -9,7 +8,7 @@ os.environ['SDL_VIDEO_CENTERED'] = '1'
 
 
 class PacmanGame():
-    master_state = None  # keep state of game
+    master_state = None
 
     def __init__(self):
         pygame.init()
@@ -27,7 +26,7 @@ class PacmanGame():
         """
         while self.master_state.isRunning():
             # blit screen on window surface
-            self.master_state.getActiveScreen().loop(self.window)  # loop
+            self.master_state.getActiveScreen().loop(self.window)
 
             pygame.display.update()
 

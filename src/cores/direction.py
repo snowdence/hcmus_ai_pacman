@@ -19,6 +19,7 @@ class Actions:
 
     _directionsAsList = _directions.items()
 
+    @staticmethod
     def vector_to_direction(vector):
         dx, dy = vector
         if dy > 0:
@@ -30,13 +31,13 @@ class Actions:
         if dx > 0:
             return Directions.RIGHT
         return Directions.STOP
-    vector_to_direction = staticmethod(vector_to_direction)
 
+    @staticmethod
     def direction_to_vector(direction, step=1):
         dx, dy = Actions._directions[direction]
         return (dx * step, dy * step)
-    direction_to_vector = staticmethod(direction_to_vector)
 
+    @staticmethod
     def get_possible_actions(point_direction, walls):
         possible_actions = []
         x, y = point_direction.get_position()
@@ -49,13 +50,12 @@ class Actions:
                 if not walls[next_x][next_y]:
                     possible_actions.append(dir)
         return possible_actions
-    get_possible_actions = staticmethod(get_possible_actions)
 
+    @staticmethod
     def get_successor(position, action):
         dx, dy = Actions.direction_to_vector(action)
         x, y = position
         return (x+dx, y+dy)
-    get_successor = staticmethod(get_successor)
 
 
 class PointState:
