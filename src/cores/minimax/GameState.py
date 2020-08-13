@@ -112,6 +112,19 @@ class GameState:
     def get_ghost_position(self):
         return [s.getPosition() for s in self.get_ghost_states()]
 
+    def mah_distance(self, p1, p2):
+        x1, y1 = p1
+        x2, y2 = p2
+        return abs(x1-x2) + abs(y1-y2)
+
+    def optimize_mahattan_danger(self):
+        pacnan_position = self.get_pacman_position()
+        temp = [self.data.agent_states[0]]
+        for ghost in self.get_ghost_states():
+            if self.mah_distance(pacnan_position, ghost.getPosition()) <= 6:
+                temp.append(ghost)
+        self.data.agent_states = temp
+
 
 class PacmanRules:
     PACMAN_SPEED = 1

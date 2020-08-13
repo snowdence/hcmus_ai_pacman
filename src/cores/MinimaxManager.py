@@ -92,7 +92,11 @@ class MinimaxManager:
             agent = game.agents[agent_index]
 
             action = None
+
+            #current_state = game.state.deepcopy()
+
             observation = game.state.deepcopy()
+
             action = agent.get_action(observation)
             game.move_history.append((agent_index, action))
             game.state = game.state.generate_successor(agent_index, action)
@@ -132,6 +136,9 @@ class MinimaxManager:
 
             action = None
             observation = game.state.deepcopy()
+            if agent_index == 0:
+                observation.optimize_mahattan_danger()
+
             action = agent.get_action(observation)
             game.move_history.append((agent_index, action))
             game.state = game.state.generate_successor(agent_index, action)
@@ -199,7 +206,7 @@ class MinimaxManager:
         self.player.render_tile(surface)
 
         text_point = self.titleFont.render(
-            str(self.step) + " $", True, (100, 0, 0))
+            str(self.game.state.get_score()) + " $", True, (100, 0, 0))
         surface.blit(text_point, (0, 0))
         # pygame.time.wait(10)
 

@@ -7,6 +7,9 @@ class Setting:
     WIDTH = 1280
     HEIGHT = 768
 
+    M_WIDTH = 700
+    M_HEIGHT = 500
+
     # SAMPLE COLOR
     WHITE = (255, 255, 255)
     BLACK = (0, 0, 0)

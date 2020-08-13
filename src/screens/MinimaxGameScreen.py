@@ -61,7 +61,7 @@ class MinimaxGameScreen(GameScreen):
     def run(self):
         num_ghost = 2
         layout = get_layout("maps/mini.txt")
-        pacman = MiniMaxAgent(2)
+        pacman = AlphaBetaAgent(3)
         ghosts = [GhostAgent(i + 1) for i in range(num_ghost)]
         game = self.new_game(layout, pacman, ghosts)
         self.tile_manager = MinimaxManager(game)

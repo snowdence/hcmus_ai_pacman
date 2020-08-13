@@ -86,6 +86,3 @@ def run():
     minimax_problem.new_game(layout, pacman, ghosts)
 
     print("Running")
-
-
-run()
