@@ -5,4 +5,4 @@ from .PlayGameScreen import PlayGameScreen
 from .MinimaxGameScreen import MinimaxGameScreen
 from .FourthGameScreen import FourthGameScreen
 from .FirstGameScreen import FirstGameScreen
-from .SecondLevelScreen import SecondLevelScreen
+from .SecondGameScreen import SecondGameScreen

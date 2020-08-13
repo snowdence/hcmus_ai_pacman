@@ -8,7 +8,8 @@ from pygame.math import Vector2
 from cores import TileManager, SecondLevelManager
 from states import *
 
-class SecondLevelScreen(GameScreen):
+
+class SecondGameScreen(GameScreen):
     def __init__(self, state):
         GameScreen.__init__(self, state=state)
         self.titleFont = pygame.font.Font(

@@ -22,9 +22,11 @@ class MasterState:
         switcher = {
             EScreenState.Menu: 'MenuScreen',
             EScreenState.Minimax: 'MinimaxGameScreen',
-            EScreenState.LEVEL_4: 'FourthGameScreen',
             EScreenState.Playing: 'PlayGameScreen',
-            EScreenState.LEVEL_1: 'FirstGameScreen'
+            EScreenState.LEVEL_1: 'FirstGameScreen',
+            EScreenState.LEVEL_2: 'SecondGameScreen',
+            EScreenState.LEVEL_3: 'ThirdGameScreen',
+            EScreenState.LEVEL_4: 'FourthGameScreen'
         }
 
         class_name = switcher.get(es_state, None)

@@ -20,7 +20,7 @@ class PacmanGame():
         pygame.display.set_caption(GAME_SETTING.TITLE)
         pygame.display.set_icon(pygame.image.load(GAME_ICON))
         self.master_state = MasterState(
-            window=self.window, running=True, screen_state=EScreenState.LEVEL_1)
+            window=self.window, running=True, screen_state=EScreenState.Minimax)
         self.clock = pygame.time.Clock()
         sound.play()
 
