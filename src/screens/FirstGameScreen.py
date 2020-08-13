@@ -32,8 +32,8 @@ class FirstGameScreen(GameScreen):
         if event.key == pygame.K_DOWN:
             self.tile_manager.move_player(dy=1)
 
-    def on_exit(self):
-        print("End Game Now")
+    # def on_exit(self):
+    #     print("End Game Now")
 
     def update(self):
         pass
