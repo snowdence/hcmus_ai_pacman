@@ -6,6 +6,8 @@ from states import EScreenState, MasterState
 GAME_SETTING = Setting()
 os.environ['SDL_VIDEO_CENTERED'] = '1'
 
+pygame.mixer.init()
+sound = pygame.mixer.Sound(PATH_ASSETS + "sound/super_mario.wav")
 
 class PacmanGame():
     master_state = None
@@ -19,6 +21,7 @@ class PacmanGame():
         self.master_state = MasterState(
             window=self.window, running=True, screen_state=EScreenState.LEVEL_1)
         self.clock = pygame.time.Clock()
+        sound.play()
 
     def run(self):
         while self.master_state.isRunning():
