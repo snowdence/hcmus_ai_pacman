@@ -25,8 +25,9 @@ class MasterState:
             EScreenState.Minimax: 'MinimaxGameScreen',
             EScreenState.LEVEL_4: 'FourthGameScreen',
             EScreenState.Playing: 'PlayGameScreen',
+            EScreenState.LEVEL_1: 'FirstGameScreen'
         }
-        
+
         class_name = switcher.get(es_state, None)
         module = importlib.import_module('screens')
         class_ = getattr(module, class_name)

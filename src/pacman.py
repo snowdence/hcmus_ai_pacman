@@ -9,6 +9,7 @@ os.environ['SDL_VIDEO_CENTERED'] = '1'
 pygame.mixer.init()
 sound = pygame.mixer.Sound(PATH_ASSETS + "sound/super_mario.wav")
 
+
 class PacmanGame():
     master_state = None
 
