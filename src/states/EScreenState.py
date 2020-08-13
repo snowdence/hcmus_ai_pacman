@@ -6,3 +6,4 @@ class EScreenState(enum.Enum):
     Option = 2
     Menu = 3
     Minimax = 4
+    GameLevel2 = 6

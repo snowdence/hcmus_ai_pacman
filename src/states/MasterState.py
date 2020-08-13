@@ -26,7 +26,8 @@ class MasterState:
         switcher = {
             EScreenState.Menu: MenuScreen(self),
             EScreenState.Playing: PlayGameScreen(self),
-            EScreenState.Minimax: MinimaxGameScreen(self)
+            #EScreenState.Minimax: MinimaxGameScreen(self),
+            EScreenState.GameLevel2: SecondLevelScreen(self)
         }
         self.screen_state = es_state
         self.active_screen = switcher.get(es_state, None)

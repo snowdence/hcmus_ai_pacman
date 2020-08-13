@@ -19,11 +19,11 @@ class PacmanGame():
         pygame.display.set_icon(pygame.image.load(GAME_ICON))
 
         self.master_state = MasterState(
-            window=self.window, running=True, screen_state=EScreenState.Minimax)  # default set to minimax game screen
+            window=self.window, running=True, screen_state=EScreenState.GameLevel2)  # level 2 screen
         self.clock = pygame.time.Clock()
 
     def run(self):
-        """Main run of pame
+        """Main run of game
         """
         while self.master_state.isRunning():
             # blit screen on window surface
