@@ -32,7 +32,6 @@ class PacmanGame():
 
             self.clock.tick(60)
 
-
 pacman_game = PacmanGame()
 pacman_game.run()
 pygame.quit()

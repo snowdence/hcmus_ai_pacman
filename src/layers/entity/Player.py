@@ -25,3 +25,9 @@ class Player(Layer):
         for coin in coin_group:
             if(self.check_collision(coin, 0, 0)):
                 coin.hide()
+
+    def monster_collision(self, monster_group):
+        for monster in monster_group:
+            if(self.check_collision(monster, 0, 0)):
+                return True
+        return False

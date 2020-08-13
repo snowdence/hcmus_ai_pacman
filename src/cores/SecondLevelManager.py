@@ -18,7 +18,9 @@ class SecondLevelManager:
     wall_group = []
     result_action_code = []
     started = False
-
+    finished = False
+    dead = False
+    
     def __init__(self):
         self.map_encode = []
         # list layer
@@ -125,13 +127,37 @@ class SecondLevelManager:
                 self.move_player(dy=1)
                 # player_y += 1
             if self.step == len(self.result):
+                self.finished = True
                 self.coin_group.pop(0)
 
-        self.player.render_tile(surface)
-        text_point = self.titleFont.render(
-            str(self.step) + " $", True, (100, 0, 0))
-        surface.blit(text_point, (0, 0))
+            if self.player.monster_collision(self.monster_group):
+                self.dead = True
+                self.step = len(self.result)
 
+        self.player.render_tile(surface)
+        if self.finished == True:
+            pygame.display.set_mode((GAME_SETTING.WIDTH, GAME_SETTING.HEIGHT))
+            #pygame.display.set_caption(GAME_SETTING.TITLE)
+            #pygame.display.set_icon(pygame.image.load(GAME_ICON))
+
+            game_over = self.itemFont.render("Level up!", True, (100,0,0))
+            surface.blit(game_over, (570, 350))
+
+            text_point = self.itemFont.render(
+                "Moves: " + str(self.step), True, (100, 0, 0))
+            surface.blit(text_point, (0, 0))
+
+        if self.dead == True:
+            pygame.display.set_mode((GAME_SETTING.WIDTH, GAME_SETTING.HEIGHT))
+            #pygame.display.set_caption(GAME_SETTING.TITLE)
+            #pygame.display.set_icon(pygame.image.load(GAME_ICON))
+
+            game_over = self.itemFont.render("Game over!", True, (100,0,0))
+            surface.blit(game_over, (570, 350))
+
+            text_point = self.itemFont.render(
+                "Moves: " + str(self.step), True, (100, 0, 0))
+            surface.blit(text_point, (0, 0))
 
 if __name__ == "__main__":
     pass
