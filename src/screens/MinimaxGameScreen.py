@@ -10,7 +10,6 @@ from states import *
 
 from cores.minimax.GameState import GameState
 from cores.minimax.GameStateData import GameStateData
-from cores.minimax.rules import *
 from cores.minimax.MiniMaxAgent import MiniMaxAgent, AlphaBetaAgent
 from cores.minimax.layout import *
 from cores.minimax.GhostAgents import GhostAgent, DirectionalGhost

@@ -1,5 +1,4 @@
 from .GameStateData import GameStateData
-from .rules import *
 from .Actions import *
 
 

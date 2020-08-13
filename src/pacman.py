@@ -25,6 +25,8 @@ class PacmanGame():
         sound.play()
 
     def run(self):
+        """Main run of game
+        """
         while self.master_state.isRunning():
             # blit screen on window surface
             self.master_state.getActiveScreen().loop(self.window)

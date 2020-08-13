@@ -20,7 +20,6 @@ class MasterState:
     def setActiveScreen(self, es_state: EScreenState):
 
         switcher = {
-
             EScreenState.Menu: 'MenuScreen',
             EScreenState.Minimax: 'MinimaxGameScreen',
             EScreenState.LEVEL_4: 'FourthGameScreen',
