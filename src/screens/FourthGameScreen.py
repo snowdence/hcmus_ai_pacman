@@ -29,7 +29,7 @@ class Game:
         self.num_moves = 0
 
 
-class MinimaxGameScreen(GameScreen):
+class FourthGameScreen(GameScreen):
     game_over = False
     init_state: GameState = None
 
@@ -40,7 +40,7 @@ class MinimaxGameScreen(GameScreen):
         self.itemFont = pygame.font.Font(
             PATH_ASSETS + "font/BD_Cartoon_Shout.ttf", 48)
 
-        print("Created [minimax game screen]")
+        print("Created [Level 4 screen]")
         self.run()
 
     def new_game(self, layout, pacman_agent, ghost_agents):
@@ -62,7 +62,7 @@ class MinimaxGameScreen(GameScreen):
     def run(self):
         num_ghost = 2
         layout = get_layout("maps/mini.txt")
-        pacman = AlphaBetaAgent(3)
+        pacman = MiniMaxAgent(2)
         ghosts = [GhostAgent(i + 1) for i in range(num_ghost)]
         game = self.new_game(layout, pacman, ghosts)
         self.tile_manager = MinimaxManager(game)

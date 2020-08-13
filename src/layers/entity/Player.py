@@ -25,3 +25,15 @@ class Player(Layer):
         for coin in coin_group:
             if(self.check_collision(coin, 0, 0)):
                 coin.hide()
+
+    def mahattan_distance(self, ghost):
+        gx, gy = ghost.position.x, ghost.position.y
+        x, y = self.position.x, self.position.y
+        dis = abs(x-gx) + abs(y - gy)
+        return dis
+
+    def ghost_mahattan_check_danger(self, ghost_group):
+        for ghost in ghost_group:
+            mad = self.mahattan_distance(ghost)
+            if mad > 3:
+                return True

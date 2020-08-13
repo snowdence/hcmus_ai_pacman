@@ -64,6 +64,9 @@ class MiniMaxAgent:
         )
 
     def min_value(self, game_state: GameState, agent_index: int, depth: int):
+        if game_state.get_num_agents() == 1:
+            return 0
+
         if len(game_state.get_legal_actions(agent_index)) == 0:
             # print("Min_Value DEBUG : {0}, Agent_index {1}, Depth{2}".format(
             #     score_evaluation_func(game_state),
@@ -134,6 +137,8 @@ class AlphaBetaAgent:
 
     def Min_Value(self, game_state, agent_index, depth, alpha, beta):
         """ For Min agents best move """
+        if game_state.get_num_agents() == 1:
+            return 0
 
         # No Legal actions.
         if (len(game_state.get_legal_actions(agent_index)) == 0):
