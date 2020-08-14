@@ -140,8 +140,8 @@ class SecondLevelManager:
             #pygame.display.set_caption(GAME_SETTING.TITLE)
             #pygame.display.set_icon(pygame.image.load(GAME_ICON))
 
-            game_over = self.itemFont.render("Level up!", True, (100,0,0))
-            surface.blit(game_over, (570, 350))
+            game_over = self.itemFont.render("Level up!", True, (200, 0, 0))
+            surface.blit(game_over, (540, 350))
 
             text_point = self.itemFont.render(
                 "Moves: " + str(self.step), True, (100, 0, 0))
@@ -152,11 +152,11 @@ class SecondLevelManager:
             #pygame.display.set_caption(GAME_SETTING.TITLE)
             #pygame.display.set_icon(pygame.image.load(GAME_ICON))
 
-            game_over = self.itemFont.render("Game over!", True, (100,0,0))
-            surface.blit(game_over, (570, 350))
+            game_over = self.itemFont.render("Game over!", True, (200, 0, 0))
+            surface.blit(game_over, (540, 350))
 
             text_point = self.itemFont.render(
-                "Moves: " + str(self.step), True, (100, 0, 0))
+                "Moves: " + str(self.step), True, (200, 0, 0))
             surface.blit(text_point, (0, 0))
 
 if __name__ == "__main__":
