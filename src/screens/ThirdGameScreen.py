@@ -5,12 +5,11 @@ from os import path
 import pytweening as tween
 from layers.entity import Wall
 from pygame.math import Vector2
-from cores import TileManager, MinimaxManager, FourthLevelManager
+from cores import TileManager, ThirdLevelManager
 from states import *
 
 from cores.minimax.GameState import GameState
 from cores.minimax.GameStateData import GameStateData
-from cores.minimax.rules import *
 from cores.minimax.MiniMaxAgent import MiniMaxAgent, AlphaBetaAgent
 from cores.minimax.layout import *
 from cores.minimax.GhostAgents import GhostAgent, DirectionalGhost
@@ -29,7 +28,7 @@ class Game:
         self.num_moves = 0
 
 
-class FourthGameScreen(GameScreen):
+class ThirdGameScreen(GameScreen):
     game_over = False
     init_state: GameState = None
 
@@ -40,7 +39,7 @@ class FourthGameScreen(GameScreen):
         self.itemFont = pygame.font.Font(
             PATH_ASSETS + "font/BD_Cartoon_Shout.ttf", 48)
 
-        print("Created [Level 4 screen]")
+        print("Created [level 3 game screen]")
         self.run()
 
     def new_game(self, layout, pacman_agent, ghost_agents):
@@ -62,10 +61,10 @@ class FourthGameScreen(GameScreen):
     def run(self):
         num_ghost = 2
         layout = get_layout("maps/mini.txt")
-        pacman = AlphaBetaAgent(3)
+        pacman = MiniMaxAgent(3)
         ghosts = [GhostAgent(i + 1) for i in range(num_ghost)]
         game = self.new_game(layout, pacman, ghosts)
-        self.tile_manager = FourthLevelManager(game)
+        self.tile_manager = ThirdLevelManager(game)
 
         print("Running")
 
