@@ -22,7 +22,9 @@ class GameState:
 
     def generate_successor(self, agent_index, action):
         if self.is_win() or self.is_lose():
-            raise Exception('Can\'t generate a successor of a terminal state.')
+            print("Ok win or lose")
+            return self
+            #raise Exception('Can\'t generate a successor of a terminal state.')
         state = GameState(self)
 
         if agent_index == 0:
@@ -39,6 +41,7 @@ class GameState:
         GameState.explored.add(self)
         GameState.explored.add(state)
         return state
+
     def __init__(self, prev_state=None):
         if prev_state != None:
             self.data = GameStateData(prev_state.data)
@@ -68,7 +71,7 @@ class GameState:
         return self.data.agent_states[1:]
 
     def get_score(self):
-        return float(self.data.score)
+        return int(self.data.score)
 
     def get_num_food(self):
         return self.data.foods.count()

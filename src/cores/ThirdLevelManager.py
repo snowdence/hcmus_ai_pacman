@@ -31,7 +31,7 @@ class ThirdLevelManager:
     def __init__(self, game):
         self.map_encode = []
         # list layer
-        #w, h = 10, 10
+        # w, h = 10, 10
         # Matrix = [[0 for x in range(w)] for y in range(h)]
         # self.map_tile: List[List[Layer]] = [
         #    [0 for x in range(w)] for y in range(h)]
@@ -82,52 +82,18 @@ class ThirdLevelManager:
                     self.player = Player(self, Vector2(col, row))
         print("Parsed")
 
-    def run(self):
-        game = self.game
-        game.num_moves = 0
-        agent_index = game.start_index
-        num_agents = len(game.agents)
-        while not game.game_over:
-
-            agent = game.agents[agent_index]
-
-            action = None
-
-            observation = game.state.deepcopy()
-
-            action = agent.get_action(observation)
-            game.move_history.append((agent_index, action))
-            game.state = game.state.generate_successor(agent_index, action)
-            game.rules.process(game.state, self)
-            print("Agent {0} action: {1}".format(agent_index, action))
-            print("Epoch agent {0}, Num moves{1}".format(
-                agent_index, game.num_moves))
-
-            if agent_index == num_agents - 1:
-                game.num_moves += 1
-                print("Score :", game.state.data.score)
-                print("Food :", game.state.get_num_food())
-                print(game.state.get_pacman_position())
-                print(game.state.get_ghost_position())
-
-            if agent_index == num_agents - 1:
-                agent_index = 0
-            else:
-                agent_index += 1
-
-            # display update
-        print("End ")
-
     def move_player(self, dx=0, dy=0):
         if (self.player.wall_collision(self.wall_group, dx, dy) is not True):
             self.player.set_position(
                 self.player.position.x + dx, self.player.position.y + dy)
+
     def monster_can_move(self, index, pos):
         if index > 0:
             ix, iy = self.initial_ghost_indexes[index-1]
             x, y = pos
             return abs(ix-x) <= 1 and abs(iy-y) <= 1
         return False
+
     def update(self):
         game = self.game
         num_agents = len(game.agents)
@@ -227,15 +193,17 @@ class ThirdLevelManager:
         surface.blit(text_point, (0, 0))
 
         if self.game.game_over:
-            pygame.display.set_mode((GAME_SETTING.M_WIDTH, GAME_SETTING.M_HEIGHT))
-            pygame.display.set_caption(GAME_SETTING.TITLE)
-            pygame.display.set_icon(pygame.image.load(GAME_ICON))
+            # pygame.display.set_mode(
+            #    (GAME_SETTING.M_WIDTH, GAME_SETTING.M_HEIGHT))
+            # pygame.display.set_caption(GAME_SETTING.TITLE)
+            # pygame.display.set_icon(pygame.image.load(GAME_ICON))
 
             game_over = self.titleFont.render(
                 "GAME OVER", True, (100, 0, 0))
             surface.blit(game_over, (70, 170))
 
-            score = self.itemFont.render("Score: " + str(self.game.state.data.score), True, (100, 0, 0))
+            score = self.itemFont.render(
+                "Score: " + str(self.game.state.data.score), True, (100, 0, 0))
             surface.blit(score, (200, 275))
 
 

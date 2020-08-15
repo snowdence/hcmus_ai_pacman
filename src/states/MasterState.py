@@ -4,14 +4,14 @@ import importlib
 
 
 class MasterState:
-    screen_state = EScreenState.Menu
+    screen_state = EScreenState.MENU
     running = False
     window = None
     # Game Screen
     active_screen = None
 
-    def __init__(self, window, running=True, screen_state=EScreenState.Menu):
-        self.screen_state = EScreenState.Menu
+    def __init__(self, window, running=True, screen_state=EScreenState.MENU):
+        self.screen_state = EScreenState.MENU
         self.running = running
         self.screen_state = screen_state
         self.setActiveScreen(screen_state)
@@ -20,9 +20,9 @@ class MasterState:
     def setActiveScreen(self, es_state: EScreenState):
 
         switcher = {
-            EScreenState.Menu: 'MenuScreen',
-            EScreenState.Minimax: 'MinimaxGameScreen',
-            EScreenState.Playing: 'PlayGameScreen',
+            EScreenState.MENU: 'MenuScreen',
+            EScreenState.MINIMAX: 'MinimaxGameScreen',
+            EScreenState.PLAYING: 'PlayGameScreen',
             EScreenState.LEVEL_1: 'FirstGameScreen',
             EScreenState.LEVEL_2: 'SecondGameScreen',
             EScreenState.LEVEL_3: 'ThirdGameScreen',

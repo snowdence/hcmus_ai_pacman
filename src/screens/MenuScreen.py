@@ -16,17 +16,21 @@ class MenuScreen(GameScreen):
 
         self.menuItems = [
             {
-                'title': 'Game screen',
-                'action': EScreenState.Playing,
+                'title': 'Level 1',
+                'action': EScreenState.LEVEL_1,
             },
             {
-                'title': 'Level 2'
+                'title': 'Level 2',
+                'action': EScreenState.LEVEL_2
             },
             {
-                'title': 'Level 3'
+                'title': 'Level 3',
+                'action': EScreenState.LEVEL_3,
+
             },
             {
-                'title': 'Setting'
+                'title': 'Level 4',
+                'action': EScreenState.LEVEL_4
             },
             {
                 'title': 'Group Information'

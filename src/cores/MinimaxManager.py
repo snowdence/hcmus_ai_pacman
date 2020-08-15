@@ -28,6 +28,8 @@ class MinimaxManager:
 
     # game state
     game = None
+    finished = False
+    step = 0
 
     def __init__(self, game):
         self.map_encode = []
@@ -47,6 +49,7 @@ class MinimaxManager:
             PATH_ASSETS + "font/BD_Cartoon_Shout.ttf", 48)
 
         self.game = game
+        self.step = 0
 
     def load_map(self, file_map='map.txt'):
         game_folder = path.dirname(__file__)
@@ -82,44 +85,6 @@ class MinimaxManager:
                     self.player = Player(self, Vector2(col, row))
         print("Parsed")
 
-    def run(self):
-        game = self.game
-        game.num_moves = 0
-        agent_index = game.start_index
-        num_agents = len(game.agents)
-        while not game.game_over:
-
-            agent = game.agents[agent_index]
-
-            action = None
-
-            #current_state = game.state.deepcopy()
-
-            observation = game.state.deepcopy()
-
-            action = agent.get_action(observation)
-            game.move_history.append((agent_index, action))
-            game.state = game.state.generate_successor(agent_index, action)
-            game.rules.process(game.state, self)
-            print("Agent {0} action: {1}".format(agent_index, action))
-            print("Epoch agent {0}, Num moves{1}".format(
-                agent_index, game.num_moves))
-
-            if agent_index == num_agents - 1:
-                game.num_moves += 1
-                print("Score :", game.state.data.score)
-                print("Food :", game.state.get_num_food())
-                print(game.state.get_pacman_position())
-                print(game.state.get_ghost_position())
-
-            if agent_index == num_agents - 1:
-                agent_index = 0
-            else:
-                agent_index += 1
-
-            # display update
-        print("End ")
-
     def move_player(self, dx=0, dy=0):
         if (self.player.wall_collision(self.wall_group, dx, dy) is not True):
             self.player.set_position(
@@ -128,6 +93,9 @@ class MinimaxManager:
     def update(self):
         game = self.game
         num_agents = len(game.agents)
+        if self.finished == True:
+            print("Finished ")
+            return
         if game.game_over:
             print("End")
             return
@@ -162,13 +130,19 @@ class MinimaxManager:
                 if game.state.collide_ghosts_pos(game.state.get_pacman_position()) == True:
                     game.game_over = True
                     print("Chet roi!!!!")
+                if game.state.is_win():
+                    print("An het coin roi")
             if game.game_over:
                 print("End")
                 return
 
+            if game.state.is_win():
+                self.finished = True
+                print("An het coin roi")
+
             if agent_index == num_agents - 1:
                 agent_index = 0
-
+                self.step += 1
             else:
                 agent_index += 1
 
@@ -209,6 +183,23 @@ class MinimaxManager:
             str(self.game.state.get_score()) + " $", True, (100, 0, 0))
         surface.blit(text_point, (0, 0))
         # pygame.time.wait(10)
+
+        if self.finished == True:
+            pygame.display.set_mode(
+                (GAME_SETTING.M_WIDTH, GAME_SETTING.M_HEIGHT))
+            pygame.display.set_caption(GAME_SETTING.TITLE)
+            pygame.display.set_icon(pygame.image.load(GAME_ICON))
+
+            game_over = self.titleFont.render(
+                "FINISHED", True, (100, 0, 0))
+            surface.blit(game_over, (70, 170))
+
+            score = self.itemFont.render(
+                "Score: " + str(self.game.state.get_score()), True, (100, 0, 0))
+            step = self.itemFont.render(
+                "Step: " + str(self.step), True, (100, 0, 0))
+            surface.blit(score, (200, 275))
+            surface.blit(step, (200, 350))
 
 
 if __name__ == "__main__":

@@ -135,7 +135,8 @@ class FirstLevelManager:
         pygame.time.wait(200)
 
         if self.finished == True:
-            pygame.display.set_mode((GAME_SETTING.M_WIDTH, GAME_SETTING.M_HEIGHT))
+            pygame.display.set_mode(
+                (GAME_SETTING.M_WIDTH, GAME_SETTING.M_HEIGHT))
             pygame.display.set_caption(GAME_SETTING.TITLE)
             pygame.display.set_icon(pygame.image.load(GAME_ICON))
 
@@ -143,11 +144,12 @@ class FirstLevelManager:
                 "GAME OVER", True, (100, 0, 0))
             surface.blit(game_over, (70, 170))
 
-            score = self.itemFont.render("Score: " + str(self.step), True, (100, 0, 0))
+            score = self.itemFont.render(
+                "Score: " + str(self.step), True, (100, 0, 0))
             surface.blit(score, (200, 275))
 
-        #self.player.render_tile(surface)
-        #pygame.time.wait(100)
+        # self.player.render_tile(surface)
+        # pygame.time.wait(100)
         # text_point = self.titleFont.render(
         #     str(self.step) + " $", True, (100, 0, 0))
         # surface.blit(text_point, (0, 0))

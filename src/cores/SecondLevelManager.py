@@ -19,6 +19,9 @@ class SecondLevelManager:
     result_action_code = []
     started = False
 
+    finished = False
+    score = False
+
     def __init__(self):
         self.map_encode = []
         # list layer
@@ -125,7 +128,23 @@ class SecondLevelManager:
                 self.move_player(dy=1)
                 # player_y += 1
             if self.step == len(self.result):
+                self.finished = True
+
                 self.coin_group.pop(0)
+
+        if self.finished == True:
+            pygame.display.set_mode(
+                (GAME_SETTING.M_WIDTH, GAME_SETTING.M_HEIGHT))
+            pygame.display.set_caption(GAME_SETTING.TITLE)
+            pygame.display.set_icon(pygame.image.load(GAME_ICON))
+
+            game_over = self.titleFont.render(
+                "GAME OVER", True, (100, 0, 0))
+            surface.blit(game_over, (70, 170))
+
+            score = self.itemFont.render(
+                "Score: " + str(self.step), True, (100, 0, 0))
+            surface.blit(score, (200, 275))
 
         self.player.render_tile(surface)
         text_point = self.titleFont.render(
