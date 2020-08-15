@@ -7,3 +7,4 @@ from .FourthGameScreen import FourthGameScreen
 from .FirstGameScreen import FirstGameScreen
 from .SecondGameScreen import SecondGameScreen
 from .ThirdGameScreen import ThirdGameScreen
+from .GroupInfoScreen import GroupInfoScreen

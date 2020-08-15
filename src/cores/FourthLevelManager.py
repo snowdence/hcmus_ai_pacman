@@ -9,6 +9,7 @@ from cores.search.bfs import *
 
 from gpath import *
 
+
 from cores.minimax.GameState import GameState
 from cores.minimax.GameStateData import GameStateData
 from cores.minimax.MiniMaxAgent import MiniMaxAgent, AlphaBetaAgent
@@ -16,7 +17,7 @@ from cores.minimax.layout import *
 from cores.minimax.GhostAgents import GhostAgent, DirectionalGhost
 
 
-class ThirdLevelManager:
+class FourthLevelManager:
     ground_group: List[Ground] = []
     player: Player = None
     monster_group: List[Monster] = []
@@ -25,16 +26,16 @@ class ThirdLevelManager:
     result_action_code = []
     started = False
     map_file = "mini.txt"
+
     # game state
     game = None
-
     finished = False
     step = 0
 
     def __init__(self, game):
         self.map_encode = []
         # list layer
-        # w, h = 10, 10
+        #w, h = 10, 10
         # Matrix = [[0 for x in range(w)] for y in range(h)]
         # self.map_tile: List[List[Layer]] = [
         #    [0 for x in range(w)] for y in range(h)]
@@ -49,7 +50,6 @@ class ThirdLevelManager:
             PATH_ASSETS + "font/BD_Cartoon_Shout.ttf", 48)
 
         self.game = game
-        self.initial_ghost_indexes = game.state.get_ghost_position()
         self.step = 0
 
     def load_map(self, file_map='map.txt'):
@@ -91,13 +91,6 @@ class ThirdLevelManager:
             self.player.set_position(
                 self.player.position.x + dx, self.player.position.y + dy)
 
-    def monster_can_move(self, index, pos):
-        if index > 0:
-            ix, iy = self.initial_ghost_indexes[index-1]
-            x, y = pos
-            return abs(ix-x) <= 1 and abs(iy-y) <= 1
-        return False
-
     def update(self):
         game = self.game
         num_agents = len(game.agents)
@@ -117,60 +110,49 @@ class ThirdLevelManager:
 
             action = agent.get_action(observation)
             game.move_history.append((agent_index, action))
-            temp_state = game.state.generate_successor(agent_index, action)
-            if self.monster_can_move(agent_index, temp_state.get_ghost_pos(agent_index)) or agent_index == 0:
-                game.state = game.state.generate_successor(agent_index, action)
-                game.rules.process(game.state, self)
-                print("Agent {0} action: {1}".format(agent_index, action))
-                print("Epoch agent {0}, Num moves{1}".format(
-                    agent_index, game.num_moves))
+            game.state = game.state.generate_successor(agent_index, action)
+            game.rules.process(game.state, self)
+            print("Agent {0} action: {1}".format(agent_index, action))
+            print("Epoch agent {0}, Num moves{1}".format(
+                agent_index, game.num_moves))
 
-                if agent_index == 0:
-                    self.move_pacman(game.state.get_pacman_position())
-                elif agent_index > 0:
-                    self.move_monster(game.state.get_ghost_state(
-                        agent_index).getPosition())
+            if agent_index == 0:
+                self.move_pacman(game.state.get_pacman_position())
+            elif agent_index > 0:
+                self.move_monster(game.state.get_ghost_state(
+                    agent_index).getPosition())
 
-                if agent_index == num_agents - 1:
-                    game.num_moves += 1
-                    print("Score :", game.state.data.score)
-                    print("Food :", game.state.get_num_food())
-                    print(game.state.get_pacman_position())
-                    print(game.state.get_ghost_position())
-                    if game.state.collide_ghosts_pos(game.state.get_pacman_position()) == True:
-                        game.game_over = True
-                        print("Chet roi!!!!")
-                if game.game_over:
-                    # pygame.display.set_mode((GAME_SETTING.M_WIDTH, GAME_SETTING.M_HEIGHT))
-                    # pygame.display.set_caption(GAME_SETTING.TITLE)
-                    # pygame.display.set_icon(pygame.image.load(GAME_ICON))
-
-                    # game_over = self.titleFont.render(
-                    #     "GAME OVER", True, (100, 0, 0))
-                    # surface.blit(game_over, (70, 170))
-
-                    # score = self.itemFont.render("Score: " + str(self.step), True, (100, 0, 0))
-                    # surface.blit(score, (200, 275))
-
-                    print("End")
-                    return
+            if agent_index == num_agents - 1:
+                game.num_moves += 1
+                print("Score :", game.state.data.score)
+                print("Food :", game.state.get_num_food())
+                print(game.state.get_pacman_position())
+                print(game.state.get_ghost_position())
+                if game.state.collide_ghosts_pos(game.state.get_pacman_position()) == True:
+                    game.game_over = True
+                    print("Chet roi!!!!")
                 if game.state.is_win():
-                    self.finished = True
                     print("An het coin roi")
+            if game.game_over:
+                print("End")
+                return
 
-                if agent_index == num_agents - 1:
-                    agent_index = 0
-                    self.step += 1
+            if game.state.is_win():
+                self.finished = True
+                print("An het coin roi")
 
-                else:
-                    agent_index += 1
+            if agent_index == num_agents - 1:
+                agent_index = 0
+                self.step += 1
+            else:
+                agent_index += 1
 
     def move_pacman(self, new_position):
         x, y = new_position
         self.player.set_position(x, y)
         self.player.eat_coin(self.coin_group)
 
-    def move_monster(self, new_position):
+    def move_monster(self,  new_position):
         x, y = new_position
 
         for monster in self.monster_group:
@@ -197,11 +179,11 @@ class ThirdLevelManager:
             monster.render_tile(surface)
 
         self.player.render_tile(surface)
-        # pygame.time.wait(150)
 
         text_point = self.titleFont.render(
             str(self.game.state.get_score()) + " $", True, (100, 0, 0))
         surface.blit(text_point, (0, 0))
+        # pygame.time.wait(10)
 
         if self.finished == True:
             pygame.display.set_mode(

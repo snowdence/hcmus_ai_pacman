@@ -3,7 +3,7 @@ import enum
 
 class EScreenState():
     PLAYING = 1
-    Option = 2
+    GROUP = 2
     MENU = 3
     MINIMAX = 4
     LEVEL_1 = 5

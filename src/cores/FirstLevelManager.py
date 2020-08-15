@@ -24,7 +24,7 @@ class FirstLevelManager:
     def __init__(self):
         self.map_encode = []
         # list layer
-        #w, h = 40, 24
+        # w, h = 40, 24
         # Matrix = [[0 for x in range(w)] for y in range(h)]
         # self.map_tile: List[List[Layer]] = [
         #    [0 for x in range(w)] for y in range(h)]
@@ -132,20 +132,20 @@ class FirstLevelManager:
                 self.coin_group.pop(0)
 
         self.player.render_tile(surface)
-        pygame.time.wait(200)
+        pygame.time.wait(10)
 
         if self.finished == True:
-            pygame.display.set_mode(
-                (GAME_SETTING.M_WIDTH, GAME_SETTING.M_HEIGHT))
-            pygame.display.set_caption(GAME_SETTING.TITLE)
-            pygame.display.set_icon(pygame.image.load(GAME_ICON))
+            # pygame.display.set_mode(
+            #    (GAME_SETTING.M_WIDTH, GAME_SETTING.M_HEIGHT))
+            # pygame.display.set_caption(GAME_SETTING.TITLE)
+            # pygame.display.set_icon(pygame.image.load(GAME_ICON))
 
             game_over = self.titleFont.render(
-                "GAME OVER", True, (100, 0, 0))
+                "FINISHED", True, (100, 0, 0))
             surface.blit(game_over, (70, 170))
 
             score = self.itemFont.render(
-                "Score: " + str(self.step), True, (100, 0, 0))
+                "STEP: " + str(self.step), True, (100, 0, 0))
             surface.blit(score, (200, 275))
 
         # self.player.render_tile(surface)

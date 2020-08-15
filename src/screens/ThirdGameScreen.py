@@ -61,7 +61,7 @@ class ThirdGameScreen(GameScreen):
     def run(self):
         num_ghost = 2
         layout = get_layout("maps/mini.txt")
-        pacman = AlphaBetaAgent(3)
+        pacman = MiniMaxAgent(3)
         ghosts = [GhostAgent(i + 1) for i in range(num_ghost)]
         game = self.new_game(layout, pacman, ghosts)
         self.tile_manager = ThirdLevelManager(game)
@@ -69,9 +69,8 @@ class ThirdGameScreen(GameScreen):
         print("Running")
 
     def on_key_down(self, event):
-        if event.key == pygame.K_p:
-            print("Play press!!!!")
-            self.tile_manager.run()
+        if event.key == pygame.K_ESCAPE:
+            self.state.actionChangeActiveScreen(EScreenState.MENU)
         if event.key == pygame.K_LEFT:
             self.tile_manager.move_player(dx=-1)
         if event.key == pygame.K_RIGHT:
