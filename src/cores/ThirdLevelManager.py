@@ -226,6 +226,18 @@ class ThirdLevelManager:
             str(self.game.state.get_score()) + " $", True, (100, 0, 0))
         surface.blit(text_point, (0, 0))
 
+        if self.game.game_over:
+            pygame.display.set_mode((GAME_SETTING.M_WIDTH, GAME_SETTING.M_HEIGHT))
+            pygame.display.set_caption(GAME_SETTING.TITLE)
+            pygame.display.set_icon(pygame.image.load(GAME_ICON))
+
+            game_over = self.titleFont.render(
+                "GAME OVER", True, (100, 0, 0))
+            surface.blit(game_over, (70, 170))
+
+            score = self.itemFont.render("Score: " + str(self.game.state.data.score), True, (100, 0, 0))
+            surface.blit(score, (200, 275))
+
 
 if __name__ == "__main__":
     pass
