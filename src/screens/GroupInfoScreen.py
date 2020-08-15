@@ -4,10 +4,10 @@ from gpath import *
 from states import *
 
 
-class MenuScreen(GameScreen):
+class GroupInfoScreen(GameScreen):
     def __init__(self, state):
         GameScreen.__init__(self, state)
-        print("- Create Menu Screen")
+        print("- Create Group info Screen")
         self.titleFont = pygame.font.Font(
             PATH_ASSETS + "font/BD_Cartoon_Shout.ttf", 72)
         self.itemFont = pygame.font.Font(
@@ -16,30 +16,22 @@ class MenuScreen(GameScreen):
 
         self.menuItems = [
             {
-                'title': 'Level 1',
-                'action': EScreenState.LEVEL_1,
+                'title': 'Press ESC to return MENU'
             },
             {
-                'title': 'Level 2',
-                'action': EScreenState.LEVEL_2
+                'title': 'Tran Minh Duc 18127027',
             },
             {
-                'title': 'Level 3',
-                'action': EScreenState.LEVEL_3,
+                'title': 'Nguyen Vu Thu Hien 18127004',
+            },
+            {
+                'title': 'Ngo Thanh Phuong Thai 18127208 ',
 
             },
             {
-                'title': 'Level 4',
-                'action': EScreenState.LEVEL_4
+                'title': 'Tran Quoc Tuan 18127246',
             },
-            {
-                'title': 'Group Information',
-                'action': EScreenState.GROUP
 
-            },
-            {
-                'title': 'Exit'
-            }
         ]
         for item in self.menuItems:
             surface = self.itemFont.render(item['title'], True, (200, 0, 0))
@@ -53,6 +45,7 @@ class MenuScreen(GameScreen):
     def on_key_down(self, event):
         if event.key == pygame.K_ESCAPE:
             print("Exit game()")
+            self.state.actionChangeActiveScreen(EScreenState.MENU)
         elif event.key == pygame.K_DOWN:
             if self.currentMenuItem < len(self.menuItems) - 1:
                 self.currentMenuItem += 1

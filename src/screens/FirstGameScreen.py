@@ -21,6 +21,8 @@ class FirstGameScreen(GameScreen):
         self.tile_manager = FirstLevelManager()
 
     def on_key_down(self, event):
+        if event.key == pygame.K_ESCAPE:
+            self.state.actionChangeActiveScreen(EScreenState.MENU)
         if event.key == pygame.K_p:
             self.tile_manager.start()
         if event.key == pygame.K_LEFT:

@@ -22,7 +22,9 @@ class GameState:
 
     def generate_successor(self, agent_index, action):
         if self.is_win() or self.is_lose():
-            raise Exception('Can\'t generate a successor of a terminal state.')
+            print("Ok win or lose")
+            return self
+            #raise Exception('Can\'t generate a successor of a terminal state.')
         state = GameState(self)
 
         if agent_index == 0:
@@ -69,7 +71,7 @@ class GameState:
         return self.data.agent_states[1:]
 
     def get_score(self):
-        return float(self.data.score)
+        return int(self.data.score)
 
     def get_num_food(self):
         return self.data.foods.count()
@@ -112,6 +114,9 @@ class GameState:
     def get_ghost_position(self):
         return [s.getPosition() for s in self.get_ghost_states()]
 
+    def get_ghost_pos(self, index):
+        return self.data.agent_states[index].getPosition()
+
     def mah_distance(self, p1, p2):
         x1, y1 = p1
         x2, y2 = p2
@@ -121,7 +126,7 @@ class GameState:
         pacnan_position = self.get_pacman_position()
         temp = [self.data.agent_states[0]]
         for ghost in self.get_ghost_states():
-            if self.mah_distance(pacnan_position, ghost.getPosition()) <= 6:
+            if self.mah_distance(pacnan_position, ghost.getPosition()) <= 3:
                 temp.append(ghost)
         self.data.agent_states = temp
 
@@ -165,7 +170,7 @@ class PacmanRules:
             # print("Current food {0}".format(num_food))
             # print("Current score {0}".format(state.data.score))
             if num_food == 0 and not state.data.lose:
-                state.data.score_change += 500
+                state.data.score_change += 2000
                 state.data.win = True
         if state.collide_ghosts(x, y) == True:
             state.data.score_change -= 1000
@@ -173,7 +178,7 @@ class PacmanRules:
 
 
 class GhostRules:
-    GHOST_SPEED = 1.0
+    GHOST_SPEED = 1
 
     def get_legal_action(state: GameState, ghost_index):
         conf = state.get_ghost_state(ghost_index).configuration

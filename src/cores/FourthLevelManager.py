@@ -17,7 +17,7 @@ from cores.minimax.layout import *
 from cores.minimax.GhostAgents import GhostAgent, DirectionalGhost
 
 
-class MinimaxManager:
+class FourthLevelManager:
     ground_group: List[Ground] = []
     player: Player = None
     monster_group: List[Monster] = []
@@ -25,6 +25,7 @@ class MinimaxManager:
     wall_group = []
     result_action_code = []
     started = False
+    map_file = "mini.txt"
 
     # game state
     game = None
@@ -39,7 +40,7 @@ class MinimaxManager:
         # self.map_tile: List[List[Layer]] = [
         #    [0 for x in range(w)] for y in range(h)]
         self.player = None
-        self.load_map('mini.txt')
+        self.load_map(self.map_file)
         self.parse_map()
 
         self.step = 0
@@ -98,6 +99,7 @@ class MinimaxManager:
             return
         if game.game_over:
             print("End")
+            self.finished = True
             return
         for agent_index in range(num_agents):
             agent = game.agents[agent_index]
