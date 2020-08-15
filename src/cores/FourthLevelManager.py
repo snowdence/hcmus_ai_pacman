@@ -99,6 +99,7 @@ class FourthLevelManager:
             return
         if game.game_over:
             print("End")
+            self.finished = True
             return
         for agent_index in range(num_agents):
             agent = game.agents[agent_index]
