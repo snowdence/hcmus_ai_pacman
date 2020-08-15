@@ -39,7 +39,6 @@ class GameState:
         GameState.explored.add(self)
         GameState.explored.add(state)
         return state
-
     def __init__(self, prev_state=None):
         if prev_state != None:
             self.data = GameStateData(prev_state.data)
@@ -111,6 +110,9 @@ class GameState:
 
     def get_ghost_position(self):
         return [s.getPosition() for s in self.get_ghost_states()]
+
+    def get_ghost_pos(self, index):
+        return self.data.agent_states[index].getPosition()
 
     def mah_distance(self, p1, p2):
         x1, y1 = p1

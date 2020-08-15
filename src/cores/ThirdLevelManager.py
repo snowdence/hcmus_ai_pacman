@@ -9,7 +9,6 @@ from cores.search.bfs import *
 
 from gpath import *
 
-
 from cores.minimax.GameState import GameState
 from cores.minimax.GameStateData import GameStateData
 from cores.minimax.MiniMaxAgent import MiniMaxAgent, AlphaBetaAgent
@@ -123,7 +122,12 @@ class ThirdLevelManager:
         if (self.player.wall_collision(self.wall_group, dx, dy) is not True):
             self.player.set_position(
                 self.player.position.x + dx, self.player.position.y + dy)
-
+    def monster_can_move(self, index, pos):
+        if index > 0:
+            ix, iy = self.initial_ghost_indexes[index-1]
+            x, y = pos
+            return abs(ix-x) <= 1 and abs(iy-y) <= 1
+        return False
     def update(self):
         game = self.game
         num_agents = len(game.agents)
@@ -140,36 +144,49 @@ class ThirdLevelManager:
 
             action = agent.get_action(observation)
             game.move_history.append((agent_index, action))
-            game.state = game.state.generate_successor(agent_index, action)
-            game.rules.process(game.state, self)
-            print("Agent {0} action: {1}".format(agent_index, action))
-            print("Epoch agent {0}, Num moves{1}".format(
-                agent_index, game.num_moves))
+            temp_state = game.state.generate_successor(agent_index, action)
+            if self.monster_can_move(agent_index, temp_state.get_ghost_pos(agent_index)) or agent_index == 0:
+                game.state = game.state.generate_successor(agent_index, action)
+                game.rules.process(game.state, self)
+                print("Agent {0} action: {1}".format(agent_index, action))
+                print("Epoch agent {0}, Num moves{1}".format(
+                    agent_index, game.num_moves))
 
-            if agent_index == 0:
-                self.move_pacman(game.state.get_pacman_position())
-            elif agent_index > 0:
-                self.move_monster(game.state.get_ghost_state(
-                    agent_index).getPosition())
+                if agent_index == 0:
+                    self.move_pacman(game.state.get_pacman_position())
+                elif agent_index > 0:
+                    self.move_monster(game.state.get_ghost_state(
+                        agent_index).getPosition())
 
-            if agent_index == num_agents - 1:
-                game.num_moves += 1
-                print("Score :", game.state.data.score)
-                print("Food :", game.state.get_num_food())
-                print(game.state.get_pacman_position())
-                print(game.state.get_ghost_position())
-                if game.state.collide_ghosts_pos(game.state.get_pacman_position()) == True:
-                    game.game_over = True
-                    print("Chet roi!!!!")
-            if game.game_over:
-                print("End")
-                return
+                if agent_index == num_agents - 1:
+                    game.num_moves += 1
+                    print("Score :", game.state.data.score)
+                    print("Food :", game.state.get_num_food())
+                    print(game.state.get_pacman_position())
+                    print(game.state.get_ghost_position())
+                    if game.state.collide_ghosts_pos(game.state.get_pacman_position()) == True:
+                        game.game_over = True
+                        print("Chet roi!!!!")
+                if game.game_over:
+                    # pygame.display.set_mode((GAME_SETTING.M_WIDTH, GAME_SETTING.M_HEIGHT))
+                    # pygame.display.set_caption(GAME_SETTING.TITLE)
+                    # pygame.display.set_icon(pygame.image.load(GAME_ICON))
 
-            if agent_index == num_agents - 1:
-                agent_index = 0
+                    # game_over = self.titleFont.render(
+                    #     "GAME OVER", True, (100, 0, 0))
+                    # surface.blit(game_over, (70, 170))
 
-            else:
-                agent_index += 1
+                    # score = self.itemFont.render("Score: " + str(self.step), True, (100, 0, 0))
+                    # surface.blit(score, (200, 275))
+
+                    print("End")
+                    return
+
+                if agent_index == num_agents - 1:
+                    agent_index = 0
+
+                else:
+                    agent_index += 1
 
     def move_pacman(self, new_position):
         x, y = new_position
@@ -178,19 +195,14 @@ class ThirdLevelManager:
 
     def move_monster(self, new_position):
         x, y = new_position
-        for i in range(len(self.monster_group)):
-            mx, my = self.monster_group[i].get_position()
+
+        for monster in self.monster_group:
+            mx, my = monster.get_position()
             adx = abs(mx - x)
             ady = abs(my - y)
             if (adx == 1 and ady == 0) or (adx == 0 and ady == 1):
-                ix, iy = self.initial_ghost_indexes[i]
-                bdx = abs(x - ix)
-                bdy = abs(y - iy)
-                ok = [0, 1]
-                if bdx in ok and bdy in ok: 
-                    self.monster_group[i].set_position(x, y)
+                monster.set_position(x, y)
                 return
-
 
     def render(self, surface):
 
@@ -208,11 +220,11 @@ class ThirdLevelManager:
             monster.render_tile(surface)
 
         self.player.render_tile(surface)
+        # pygame.time.wait(150)
 
         text_point = self.titleFont.render(
             str(self.game.state.get_score()) + " $", True, (100, 0, 0))
         surface.blit(text_point, (0, 0))
-        # pygame.time.wait(10)
 
 
 if __name__ == "__main__":
