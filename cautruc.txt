@@ -1,0 +1,11 @@
+1. Folder Structure
+- maps: chứa map test
+- report: chứa report của đồ án
+- src : Chứa mã nguồn
+
+2. NOTE !!!
+- Nếu muốn chạy mã nguồn phải cd vào thư mục src hoặc mở vscode thư mục src rồi chạy pacman.py
+
+3. Thư viện cần cài (python3)
+pip install pygame
+pip install pytweening
