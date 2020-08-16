@@ -182,26 +182,26 @@ class FourthLevelManager:
         self.player.render_tile(surface)
 
         text_point = self.titleFont.render(
-            str(self.game.state.get_score()) + " $", True, (100, 0, 0))
+            "$" + str(self.game.state.get_score()), True, (100, 0, 0))
         surface.blit(text_point, (0, 0))
         # pygame.time.wait(10)
 
         if self.finished == True:
-            pygame.display.set_mode(
-                (GAME_SETTING.M_WIDTH, GAME_SETTING.M_HEIGHT))
-            pygame.display.set_caption(GAME_SETTING.TITLE)
-            pygame.display.set_icon(pygame.image.load(GAME_ICON))
+            # pygame.display.set_mode(
+            #     (GAME_SETTING.WIDTH, GAME_SETTING.HEIGHT))
+            # pygame.display.set_caption(GAME_SETTING.TITLE)
+            # pygame.display.set_icon(pygame.image.load(GAME_ICON))
 
             game_over = self.titleFont.render(
-                "FINISHED", True, (100, 0, 0))
-            surface.blit(game_over, (70, 170))
+                "FINISHED", True, (200, 0, 0))
+            surface.blit(game_over, (450, 100))
 
             score = self.itemFont.render(
-                "Score: " + str(self.game.state.get_score()), True, (100, 0, 0))
+                "Score: " + str(self.game.state.get_score()), True, (200, 0, 0))
             step = self.itemFont.render(
-                "Step: " + str(self.step), True, (100, 0, 0))
-            surface.blit(score, (200, 275))
-            surface.blit(step, (200, 350))
+                "Step: " + str(self.step), True, (200, 0, 0))
+            surface.blit(score, (500, 320))
+            surface.blit(step, (500, 420))
 
 
 if __name__ == "__main__":
