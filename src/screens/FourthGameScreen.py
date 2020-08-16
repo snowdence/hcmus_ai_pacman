@@ -60,9 +60,10 @@ class FourthGameScreen(GameScreen):
             game.game_over = True
 
     def run(self):
-        num_ghost = 2
         layout = get_layout("maps/mini.txt")
         pacman = AlphaBetaAgent(3)
+        num_ghost = layout.get_num_ghosts()
+
         ghosts = [GhostAgent(i + 1) for i in range(num_ghost)]
         game = self.new_game(layout, pacman, ghosts)
         self.tile_manager = FourthLevelManager(game)

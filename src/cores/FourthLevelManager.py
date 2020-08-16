@@ -34,6 +34,8 @@ class FourthLevelManager:
 
     def __init__(self, game):
         self.map_encode = []
+        self.map_data = []
+
         # list layer
         #w, h = 10, 10
         # Matrix = [[0 for x in range(w)] for y in range(h)]
@@ -187,10 +189,10 @@ class FourthLevelManager:
         # pygame.time.wait(10)
 
         if self.finished == True:
-            pygame.display.set_mode(
-                (GAME_SETTING.M_WIDTH, GAME_SETTING.M_HEIGHT))
-            pygame.display.set_caption(GAME_SETTING.TITLE)
-            pygame.display.set_icon(pygame.image.load(GAME_ICON))
+            # pygame.display.set_mode(
+            #     (GAME_SETTING.M_WIDTH, GAME_SETTING.M_HEIGHT))
+            # pygame.display.set_caption(GAME_SETTING.TITLE)
+            # pygame.display.set_icon(pygame.image.load(GAME_ICON))
 
             game_over = self.titleFont.render(
                 "FINISHED", True, (100, 0, 0))

@@ -7,10 +7,12 @@ class MazeProblem(Problem):
     start = 0
     goal = 0
 
-    def __init__(self, graph, start: MazeState, goal: MazeState):
+    def __init__(self, width, height, graph, start: MazeState, goal: MazeState):
         self.start = start
         self.goal = goal
         self.graph = graph
+        self.width = width
+        self.height = height
 
     def initialState(self):
         return self.start
@@ -25,9 +27,9 @@ class MazeProblem(Problem):
             list_actions.append(Action(0))
         if ms.y > 0 and self.graph[ms.y - 1][ms.x] not in ['1', '3']:
             list_actions.append(Action(1))
-        if ms.x < 40 - 1 and self.graph[ms.y][ms.x + 1] not in ['1', '3']:
+        if ms.x < self.width - 1 and self.graph[ms.y][ms.x + 1] not in ['1', '3']:
             list_actions.append(Action(2))
-        if ms.y < 24 - 1 and self.graph[ms.y + 1][ms.x] not in ['1', '3']:
+        if ms.y < self.height - 1 and self.graph[ms.y + 1][ms.x] not in ['1', '3']:
             list_actions.append(Action(3))
         return list_actions
 

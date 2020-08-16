@@ -20,14 +20,13 @@ class FirstLevelManager:
     started = False
     finished = False
     score = False
+    height = 0
+    width = 0
 
     def __init__(self):
         self.map_encode = []
-        # list layer
-        # w, h = 40, 24
-        # Matrix = [[0 for x in range(w)] for y in range(h)]
-        # self.map_tile: List[List[Layer]] = [
-        #    [0 for x in range(w)] for y in range(h)]
+        self.map_data = []
+
         self.player = None
         self.load_map()
         self.parse_map()
@@ -38,6 +37,8 @@ class FirstLevelManager:
             PATH_ASSETS + "font/BD_Cartoon_Shout.ttf", 79)
         self.itemFont = pygame.font.Font(
             PATH_ASSETS + "font/BD_Cartoon_Shout.ttf", 47)
+        self.height = 0
+        self.width = 0
 
     def solve_level1_2(self):
         player_x, player_y = int(self.player.position.x), int(
@@ -45,6 +46,7 @@ class FirstLevelManager:
         coin_x, coin_y = int(self.coin_group[0].position.x), int(
             self.coin_group[0].position.y)
         maze_problem = MazeProblem(
+            self.width, self.height,
             self.map_encode, MazeState(player_x, player_y), MazeState(coin_x, coin_y))
         bfs = BFS()
 
@@ -60,6 +62,7 @@ class FirstLevelManager:
         with open(path.join(game_folder, PATH_MAP + file_map), 'rt') as f:
             for line in f:
                 self.map_data.append(line)
+
         for row, tiles in enumerate(self.map_data, start=0):
             row_p = []
             for col, tile in enumerate(tiles, start=0):
@@ -67,6 +70,8 @@ class FirstLevelManager:
                     row_p.append(tile)
             self.map_encode.append(row_p.copy())
         print("load map {} successfully!!!".format(file_map))
+        self.height = len(self.map_data)
+        self.width = len(self.map_data[0])
 
     def start(self):
         self.started = True

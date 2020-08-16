@@ -19,13 +19,13 @@ class TileManager:
     result_action_code = []
     started = False
 
+    height = 0
+    width = 0
+
     def __init__(self):
         self.map_encode = []
         # list layer
-        w, h = 40, 24
-        # Matrix = [[0 for x in range(w)] for y in range(h)]
-        self.map_tile: List[List[Layer]] = [
-            [0 for x in range(w)] for y in range(h)]
+
         self.player = None
         self.load_map()
         self.parse_map()
@@ -36,6 +36,8 @@ class TileManager:
             PATH_ASSETS + "font/BD_Cartoon_Shout.ttf", 72)
         self.itemFont = pygame.font.Font(
             PATH_ASSETS + "font/BD_Cartoon_Shout.ttf", 48)
+        self.height = 0
+        self.width = 0
 
     def solve_level1_2(self):
         player_x, player_y = int(self.player.position.x), int(
@@ -65,6 +67,8 @@ class TileManager:
                     row_p.append(tile)
             self.map_encode.append(row_p.copy())
         print("load map {} successfully!!!".format(file_map))
+        self.height = len(self.map_data)
+        self.width = len(self.map_data[0])
 
     def start(self):
         self.started = True
