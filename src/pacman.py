@@ -22,7 +22,7 @@ class PacmanGame():
         self.master_state = MasterState(
             window=self.window, running=True, screen_state=EScreenState.MENU)
         self.clock = pygame.time.Clock()
-        sound.play()
+        sound.play(-1)
 
     def run(self):
         """Main run of game
